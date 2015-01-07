@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Fontin Sans';
+    src: url('Fontin_Sans_R_45b.otf');
+}
+
+h1, h2, h3 {
+    font-family: $header-font-family;
+    font-weight: $header-font-weight;
+}
+
+body {
+    font-family: $base-font-family;
+    font-weight: $base-font-weight;
+    font-size: $base-font-size;
+}

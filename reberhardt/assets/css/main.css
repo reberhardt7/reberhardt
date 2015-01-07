@@ -1,0 +1,168 @@
+/* line 1, ../sass/partials/_base.scss */
+body {
+  margin: 0;
+}
+
+/* line 1, ../sass/partials/_layout.scss */
+.pane, #pane1 {
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+}
+
+/* line 7, ../sass/partials/_layout.scss */
+.vertical-center, #pane1 .top img, #pane1 .bottom .text {
+  position: relative;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@font-face {
+  font-family: 'Fontin Sans';
+  src: url("Fontin_Sans_R_45b.otf");
+}
+/* line 6, ../sass/partials/_typography.scss */
+h1, h2, h3 {
+  font-family: "Fontin Sans";
+  font-weight: 300;
+}
+
+/* line 11, ../sass/partials/_typography.scss */
+body {
+  font-family: "Raleway";
+  font-weight: 300;
+  font-size: 1em;
+}
+
+/* line 1, ../sass/partials/_navbar.scss */
+.navbar {
+  width: 100%;
+  padding: 0;
+  text-align: center;
+  z-index: 10;
+}
+/* line 11, ../sass/partials/_navbar.scss */
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  -moz-transition: color 0.15s ease-in-out;
+  -o-transition: color 0.15s ease-in-out;
+  -webkit-transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
+}
+/* line 19, ../sass/partials/_navbar.scss */
+.navbar li {
+  position: relative;
+  display: inline-block;
+}
+/* line 24, ../sass/partials/_navbar.scss */
+.navbar a {
+  color: inherit;
+  text-decoration: none;
+  padding: 1.2em 1em 1.2em 1em;
+  display: inline-block;
+}
+/* line 33, ../sass/partials/_navbar.scss */
+.navbar li::after {
+  display: block;
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: 0.8em;
+  -moz-transition: ease-in-out 0.15s;
+  -o-transition: ease-in-out 0.15s;
+  -webkit-transition: ease-in-out 0.15s;
+  transition: ease-in-out 0.15s;
+  content: " ";
+}
+/* line 43, ../sass/partials/_navbar.scss */
+.navbar li:hover::after {
+  left: 0;
+  right: 0;
+}
+
+/* line 51, ../sass/partials/_navbar.scss */
+.navbar.bottom-anchor {
+  position: absolute;
+  bottom: 0px;
+}
+
+/* line 55, ../sass/partials/_navbar.scss */
+.navbar.top-anchor {
+  position: fixed;
+  top: 0px;
+}
+
+/* line 62, ../sass/partials/_navbar.scss */
+.navbar.dark {
+  color: #555;
+}
+/* line 68, ../sass/partials/_navbar.scss */
+.navbar.dark ul:hover {
+  color: #ccc;
+}
+/* line 72, ../sass/partials/_navbar.scss */
+.navbar.dark li::after {
+  border-bottom: 1px solid gray;
+}
+
+/* line 10, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .top {
+  width: 100%;
+  height: 65%;
+  background: #fff url("/assets/img/subtle_grunge.png") repeat;
+}
+@media (max-height: 850px) {
+  /* line 10, ../sass/partials/_homepage-pane-1.scss */
+  #pane1 .top {
+    height: calc(100% - 18rem) !important;
+  }
+}
+/* line 19, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .top img {
+  height: 80%;
+  top: 45%;
+  /* Not 50%, because the paper tear in the bottom pane takes up some space */
+}
+/* line 26, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .bottom {
+  position: relative;
+  width: 100%;
+  height: 35%;
+  background: #1b1b1b;
+}
+@media (max-height: 850px) {
+  /* line 26, ../sass/partials/_homepage-pane-1.scss */
+  #pane1 .bottom {
+    height: 18rem !important;
+  }
+}
+/* line 36, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .bottom .paper-tear {
+  position: absolute;
+  top: -45px;
+  background: url("../img/paper-tear.png") repeat-x;
+  background-size: 477.85388128px 50px;
+  width: 100%;
+  height: 50px;
+}
+/* line 45, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .bottom .text {
+  color: #fff;
+}
+/* line 50, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .bottom h1 {
+  margin: 0;
+  font-size: 5.5em;
+}
+/* line 55, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .bottom p {
+  margin: 10px;
+  font-size: 2em;
+  font-weight: 100;
+}

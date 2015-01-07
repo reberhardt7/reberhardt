@@ -1,0 +1,71 @@
+.navbar {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    z-index: 10;
+
+    $transition-speed: .15s;
+    $vertical-padding: 1.2em;
+    $horizontal-padding: 1em;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+        @include transition(color $transition-speed ease-in-out);
+    }
+
+    li {
+        position: relative;
+        display: inline-block;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+        padding: $vertical-padding $horizontal-padding $vertical-padding $horizontal-padding;
+        display: inline-block;
+    }
+
+    // Animated underline (appears on mouseover)
+
+    li::after {
+        display: block;
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        bottom: $vertical-padding - 0.4em;
+        @include transition($transition-speed ease-in-out);
+        content: " ";
+    }
+
+    li:hover::after {
+        left: 0;
+        right: 0;
+    }
+}
+
+// Positioning
+
+.navbar.bottom-anchor {
+    position: absolute;
+    bottom: 0px;
+}
+
+// Color
+
+.navbar.dark {
+    $default-color: #555;
+    $focused-color: #ccc;
+
+    color: $default-color;
+
+    ul:hover {
+        color: $focused-color;
+    }
+
+    li::after {
+        border-bottom: 1px solid darken($focused-color, 30%);
+    }
+}
