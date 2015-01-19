@@ -1,0 +1,27 @@
+#about {
+    background: #000;
+    color: #eee;
+    padding: 0;
+    $width: 1200px;
+
+    .contents {
+        height: 100%;
+        width: $width;
+        margin-left: auto;
+        margin-right: auto;
+
+        div {
+            width: calc(#{$width} - (2/3) * 100vh - 10px); // Width - width of img - some safety padding
+            display: inline-block;
+            float: left;
+            @extend .vertical-center;
+            text-align: left;
+        }
+
+        img {
+            height: 100vh;
+            width: 66.7vh; // Proper width of image given a 2/3 aspect ratio
+            float: right;
+        }
+    }
+}

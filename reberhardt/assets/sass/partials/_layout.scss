@@ -1,7 +1,19 @@
+body {
+    margin: 0;
+}
+
 .pane {
+    $vertical-padding: 3em;
     text-align: center;
     width: 100%;
-    height: 100vh;
+    padding-top: $vertical-padding;
+    padding-bottom: $vertical-padding;
+    min-height: calc(100vh - 2 * #{$vertical-padding});
+
+    > * {
+        display: inline-block;
+        width: 1000px;
+    }
 }
 
 .vertical-center {

@@ -1,20 +1,20 @@
 #pane1 {
-
-    @extend .pane;
+    padding: 0;
 
     // How far down the page the "page tear" should happen
     $split-location: 65%;
     // Minimum height so the text in the bottom half doesn't get obscured
     $bottom-minimum-height: 18rem;
+    $preserve-bottom-trigger: 850px;
 
     .top {
         width: 100%;
         height: $split-location;
-        @media (max-height: 850px) {
+        @media (max-height: $preserve-bottom-trigger) {
             // The bottom half is more important. Make space for it if screen gets too small
             height: calc(100% - #{$bottom-minimum-height}) !important;  // http://stackoverflow.com/a/20236515
         }
-        background: #fff url('/assets/img/subtle_grunge.png') repeat;
+        background: #fff url('/assets/img/tex/subtle_grunge.png') repeat;
 
         img {
             height: 80%;
@@ -27,7 +27,7 @@
         position: relative;
         width: 100%;
         height: 100% - $split-location;
-        @media (max-height: 850px) {
+        @media (max-height: $preserve-bottom-trigger) {
             // Don't let the bottom get too small, or the text will be obscured
             height: $bottom-minimum-height !important;
         }
@@ -36,7 +36,7 @@
         .paper-tear {
             position: absolute;
             top: -45px;
-            background: url('../img/paper-tear.png') repeat-x;
+            background: url('../img/tex/paper-tear.png') repeat-x;
             background-size: 477.85388128px 50px;
             width: 100%;
             height: 50px;
@@ -50,12 +50,6 @@
         h1 {
             margin: 0;
             font-size: 5.5em;
-        }
-
-        p {
-            margin: 10px;
-            font-size: 2em;
-            font-weight: $light;
         }
     }
 

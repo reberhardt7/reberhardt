@@ -1,0 +1,32 @@
+#education {
+
+    background: url('/assets/img/tex/shattered-purple.png') repeat;
+    color: #fff;
+    $link-color: #FFDF00;
+
+    a { color: $link-color; }
+    a:hover { color: lighten($link-color, 10%); }
+
+    .well {
+        $img-width: 15em;
+        $img-margin-right: 1.5em;
+
+        display: inline-block;
+        background: rgba(200, 200, 200, .3);
+        padding: 1em;
+        margin: 1em;
+        @include border-radius(6px);
+
+        img {
+            width: $img-width;
+            float: left;
+            margin-right: $img-margin-right;
+        }
+
+        .info {
+            float: left;
+            text-align: left;
+            width: calc(100% - #{$img-width} - #{$img-margin-right});
+        }
+    }
+}

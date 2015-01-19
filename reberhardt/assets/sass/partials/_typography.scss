@@ -3,13 +3,58 @@
     src: url('Fontin_Sans_R_45b.otf');
 }
 
-h1, h2, h3 {
-    font-family: $header-font-family;
-    font-weight: $header-font-weight;
-}
-
 body {
     font-family: $base-font-family;
     font-weight: $base-font-weight;
-    font-size: $base-font-size;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+    font-weight: $header-font-weight;
+}
+
+h1 {
+    font-family: $header-font-family;
+    font-size: 4em;
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+}
+
+h2 {
+    font-family: $base-font-family;
+    font-size: 2em;
+    margin-bottom: 0.25em;
+}
+
+h3 {
+    font-family: $base-font-family;
+    font-size: 1.6em;
+    margin-bottom: 0.25em;
+}
+
+.subheading {
+    margin: 10px;
+    font-size: 2em;
+    font-weight: $light;
+}
+
+p {
+    margin-top: 0;
+}
+
+a {
+    color: $link-color;
+}
+a:hover {
+    color: darken($link-color, 5%);
+}
+
+.quote {
+    display: inline-block;
+    margin-top: .75em;
+    margin-bottom: .75em;
+    padding-left: 1.5em;
+    border-left: 3px solid;
 }

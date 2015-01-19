@@ -1,17 +1,24 @@
-/* line 1, ../sass/partials/_base.scss */
+/* line 1, ../sass/partials/_layout.scss */
 body {
   margin: 0;
 }
 
-/* line 1, ../sass/partials/_layout.scss */
-.pane, #pane1 {
+/* line 5, ../sass/partials/_layout.scss */
+.pane {
   text-align: center;
   width: 100%;
-  height: 100vh;
+  padding-top: 3em;
+  padding-bottom: 3em;
+  min-height: calc(100vh - 2 * 3em);
+}
+/* line 13, ../sass/partials/_layout.scss */
+.pane > * {
+  display: inline-block;
+  width: 1000px;
 }
 
-/* line 7, ../sass/partials/_layout.scss */
-.vertical-center, #pane1 .top img, #pane1 .bottom .text {
+/* line 19, ../sass/partials/_layout.scss */
+.vertical-center, #pane1 .top img, #pane1 .bottom .text, #about .contents div {
   position: relative;
   top: 50%;
   -moz-transform: translateY(-50%);
@@ -25,16 +32,70 @@ body {
   src: url("Fontin_Sans_R_45b.otf");
 }
 /* line 6, ../sass/partials/_typography.scss */
-h1, h2, h3 {
-  font-family: "Fontin Sans";
-  font-weight: 300;
-}
-
-/* line 11, ../sass/partials/_typography.scss */
 body {
   font-family: "Raleway";
   font-weight: 300;
-  font-size: 1em;
+  line-height: 1.6;
+  font-size: 0.95em;
+}
+
+/* line 13, ../sass/partials/_typography.scss */
+h1, h2, h3 {
+  margin-top: 0;
+  font-weight: 300;
+}
+
+/* line 18, ../sass/partials/_typography.scss */
+h1 {
+  font-family: "Fontin Sans";
+  font-size: 4em;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+/* line 25, ../sass/partials/_typography.scss */
+h2 {
+  font-family: "Raleway";
+  font-size: 2em;
+  margin-bottom: 0.25em;
+}
+
+/* line 31, ../sass/partials/_typography.scss */
+h3 {
+  font-family: "Raleway";
+  font-size: 1.6em;
+  margin-bottom: 0.25em;
+}
+
+/* line 37, ../sass/partials/_typography.scss */
+.subheading {
+  margin: 10px;
+  font-size: 2em;
+  font-weight: 100;
+}
+
+/* line 43, ../sass/partials/_typography.scss */
+p {
+  margin-top: 0;
+}
+
+/* line 47, ../sass/partials/_typography.scss */
+a {
+  color: #1EAEDB;
+}
+
+/* line 50, ../sass/partials/_typography.scss */
+a:hover {
+  color: #1b9cc5;
+}
+
+/* line 54, ../sass/partials/_typography.scss */
+.quote {
+  display: inline-block;
+  margin-top: .75em;
+  margin-bottom: .75em;
+  padding-left: 1.5em;
+  border-left: 3px solid;
 }
 
 /* line 1, ../sass/partials/_navbar.scss */
@@ -111,11 +172,15 @@ body {
   border-bottom: 1px solid gray;
 }
 
+/* line 1, ../sass/partials/_homepage-pane-1.scss */
+#pane1 {
+  padding: 0;
+}
 /* line 10, ../sass/partials/_homepage-pane-1.scss */
 #pane1 .top {
   width: 100%;
   height: 65%;
-  background: #fff url("/assets/img/subtle_grunge.png") repeat;
+  background: #fff url("/assets/img/tex/subtle_grunge.png") repeat;
 }
 @media (max-height: 850px) {
   /* line 10, ../sass/partials/_homepage-pane-1.scss */
@@ -146,7 +211,7 @@ body {
 #pane1 .bottom .paper-tear {
   position: absolute;
   top: -45px;
-  background: url("../img/paper-tear.png") repeat-x;
+  background: url("../img/tex/paper-tear.png") repeat-x;
   background-size: 477.85388128px 50px;
   width: 100%;
   height: 50px;
@@ -155,14 +220,190 @@ body {
 #pane1 .bottom .text {
   color: #fff;
 }
-/* line 50, ../sass/partials/_homepage-pane-1.scss */
+/* line 55, ../sass/partials/_homepage-pane-1.scss */
 #pane1 .bottom h1 {
   margin: 0;
   font-size: 5.5em;
 }
-/* line 55, ../sass/partials/_homepage-pane-1.scss */
-#pane1 .bottom p {
-  margin: 10px;
+
+/* line 1, ../sass/partials/_homepage-about.scss */
+#about {
+  background: #000;
+  color: #eee;
+  padding: 0;
+}
+/* line 7, ../sass/partials/_homepage-about.scss */
+#about .contents {
+  height: 100%;
+  width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* line 13, ../sass/partials/_homepage-about.scss */
+#about .contents div {
+  width: calc(1200px - (2/3) * 100vh - 10px);
+  display: inline-block;
+  float: left;
+  text-align: left;
+}
+/* line 21, ../sass/partials/_homepage-about.scss */
+#about .contents img {
+  height: 100vh;
+  width: 66.7vh;
+  float: right;
+}
+
+/* line 1, ../sass/partials/_homepage-software.scss */
+#software {
+  background: url("/assets/img/tex/agsquare.png") repeat;
+}
+/* line 17, ../sass/partials/_homepage-software.scss */
+#software ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+  position: relative;
+}
+/* line 24, ../sass/partials/_homepage-software.scss */
+#software .vertical-line {
+  position: absolute;
+  left: 10em;
+  height: 100%;
+  border-left: 1px solid #ccc;
+}
+/* line 32, ../sass/partials/_homepage-software.scss */
+#software li::before {
+  content: ' ';
+  background: #ccc;
+  border-radius: 100px;
+  height: 8px;
+  width: 8px;
+  position: absolute;
+  left: calc(10em - 4px);
+  top: 50%;
+}
+/* line 45, ../sass/partials/_homepage-software.scss */
+#software li {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+/* line 53, ../sass/partials/_homepage-software.scss */
+#software li .bubble {
+  position: absolute;
+  top: calc(50% - 0.75em);
+  right: calc(100% - 10em);
+  margin-right: 20px;
+  background: #fff;
+  padding: 0.25em 1em 0.25em 1em;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #aaa;
+}
+/* line 70, ../sass/partials/_homepage-software.scss */
+#software li .bubble::before, #software li .bubble::after {
+  position: absolute;
+  left: 100%;
+  width: 0;
+  height: 0;
+  content: " ";
+}
+/* line 78, ../sass/partials/_homepage-software.scss */
+#software li .bubble::before {
+  top: calc(50% - 11px);
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-left: 11px solid #aaa;
+}
+/* line 86, ../sass/partials/_homepage-software.scss */
+#software li .bubble::after {
+  top: calc(50% - 10px);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #fff;
+}
+/* line 94, ../sass/partials/_homepage-software.scss */
+#software li img {
+  float: left;
+  margin-left: 11em;
+  margin-right: 2em;
+  width: 15em;
+}
+/* line 101, ../sass/partials/_homepage-software.scss */
+#software li .info {
+  float: left;
+  text-align: left;
+  width: calc(100% - 10em - 15em - 3em);
+}
+
+/* line 1, ../sass/partials/_homepage-education.scss */
+#education {
+  background: url("/assets/img/tex/shattered-purple.png") repeat;
+  color: #fff;
+}
+/* line 7, ../sass/partials/_homepage-education.scss */
+#education a {
+  color: #FFDF00;
+}
+/* line 8, ../sass/partials/_homepage-education.scss */
+#education a:hover {
+  color: #ffe533;
+}
+/* line 10, ../sass/partials/_homepage-education.scss */
+#education .well {
+  display: inline-block;
+  background: rgba(200, 200, 200, 0.3);
+  padding: 1em;
+  margin: 1em;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+}
+/* line 20, ../sass/partials/_homepage-education.scss */
+#education .well img {
+  width: 15em;
+  float: left;
+  margin-right: 1.5em;
+}
+/* line 26, ../sass/partials/_homepage-education.scss */
+#education .well .info {
+  float: left;
+  text-align: left;
+  width: calc(100% - 15em - 1.5em);
+}
+
+/* line 1, ../sass/partials/_homepage-photography.scss */
+#photography {
+  background: url("/assets/img/tex/stardust.png") repeat;
+  color: #fff;
+}
+
+/* line 1, ../sass/partials/_homepage-connect.scss */
+#connect {
+  background: url("/assets/img/tex/gplaypattern-blue.png") repeat;
+  color: #fff;
+  min-height: 0;
+}
+/* line 13, ../sass/partials/_homepage-connect.scss */
+#connect a {
+  color: #fff;
   font-size: 2em;
-  font-weight: 100;
+  display: inline-block;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+  padding-top: 0.25em;
+  -moz-transition: color 0.1s, font-size 0.1s, padding-top 0.1s;
+  -o-transition: color 0.1s, font-size 0.1s, padding-top 0.1s;
+  -webkit-transition: color 0.1s, font-size 0.1s, padding-top 0.1s;
+  transition: color 0.1s, font-size 0.1s, padding-top 0.1s;
+}
+/* line 25, ../sass/partials/_homepage-connect.scss */
+#connect a:hover {
+  color: #E8FF1E;
+  font-size: 2.25em;
+  padding-top: 0em;
 }

@@ -1,0 +1,30 @@
+#connect {
+    background: url('/assets/img/tex/gplaypattern-blue.png') repeat;
+    color: #fff;
+    min-height: 0;
+
+    $icon-size: 2em;
+    $icon-hover-size: 2.25em;
+    $icon-hover-transition-speed: .1s;
+    $icon-padding: .25em;
+    $icon-color: #fff;
+    $icon-hover-color: #E8FF1E;
+
+    a {
+        color: $icon-color;
+        font-size: $icon-size;
+        display: inline-block;
+        padding-left: $icon-padding;
+        padding-right: $icon-padding;
+        padding-top: $icon-hover-size - $icon-size; // Used to prevent row of icons from moving when one of them is hovered
+        @include transition(color $icon-hover-transition-speed,
+                            font-size $icon-hover-transition-speed,
+                            padding-top $icon-hover-transition-speed);
+    }
+
+    a:hover {
+        color: $icon-hover-color;
+        font-size: $icon-hover-size;
+        padding-top: 0em;
+    }
+}
