@@ -1,56 +1,47 @@
 #pane1 {
+    $paper-tear-height: 50px;
+
     padding: 0;
+    height: calc(100vh + #{$paper-tear-height});
+    background: #fff url('/assets/img/tex/subtle_grunge.png') repeat;
+    color: #333;
+    text-align: center;
+    position: relative;
 
-    // How far down the page the "page tear" should happen
-    $split-location: 65%;
-    // Minimum height so the text in the bottom half doesn't get obscured
-    $bottom-minimum-height: 18rem;
-    $preserve-bottom-trigger: 850px;
-
-    .top {
-        width: 100%;
-        height: $split-location;
-        @media (max-height: $preserve-bottom-trigger) {
-            // The bottom half is more important. Make space for it if screen gets too small
-            height: calc(100% - #{$bottom-minimum-height}) !important;  // http://stackoverflow.com/a/20236515
-        }
-        background: #fff url('/assets/img/tex/subtle_grunge.png') repeat;
+    .centerpiece {
+        @extend .vertical-center;
+        top: 40%; /* Not 50%, because the navbar takes up some space */
 
         img {
-            height: 80%;
-            @extend .vertical-center;
-            top: 45%; /* Not 50%, because the paper tear in the bottom pane takes up some space */
+            height: 25em;
         }
+        width: auto;
     }
 
-    .bottom {
-        position: relative;
+    h1 {
+        margin: 0;
+        font-size: 5.5em;
+    }
+
+    .down-chevron {
+        color: #999;
+        font-size: 3em;
+        display: block;
+        position: absolute;
+        bottom: 15px + $paper-tear-height;
+        // horizontal center
         width: 100%;
-        height: 100% - $split-location;
-        @media (max-height: $preserve-bottom-trigger) {
-            // Don't let the bottom get too small, or the text will be obscured
-            height: $bottom-minimum-height !important;
-        }
-        background: #1b1b1b;
+        left: 0;
+    }
 
-        .paper-tear {
-            position: absolute;
-            top: -45px;
-            background: url('../img/tex/paper-tear.png') repeat-x;
-            background-size: 477.85388128px 50px;
-            width: 100%;
-            height: 50px;
-        }
-
-        .text {
-            @extend .vertical-center;
-            color: #fff;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 5.5em;
-        }
+    .paper-tear {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: url('../img/tex/paper-tear.png') repeat-x;
+        background-size: 2093/219*$paper-tear-height $paper-tear-height;
+        width: 100%;
+        height: $paper-tear-height;
     }
 
 }

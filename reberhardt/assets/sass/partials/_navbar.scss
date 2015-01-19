@@ -1,12 +1,16 @@
 .navbar {
-    width: 100%;
-    padding: 0;
-    text-align: center;
-    z-index: 10;
 
     $transition-speed: .15s;
     $vertical-padding: 1.2em;
     $horizontal-padding: 1em;
+    $color: #555;
+
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    z-index: 10;
+    color: $color;
+
 
     ul {
         list-style-type: none;
@@ -38,6 +42,7 @@
         bottom: $vertical-padding - 0.4em;
         @include transition($transition-speed ease-in-out);
         content: " ";
+        border-bottom: 1px solid lighten($color, 20%);
     }
 
     li:hover::after {
@@ -48,28 +53,11 @@
 
 // Positioning
 
-.navbar.bottom-anchor {
+.navbar.normal {
     position: absolute;
-    bottom: 0px;
+    bottom: 3em;
 }
-.navbar.top-anchor {
+.navbar.sticky {
     position: fixed;
     top: 0px;
-}
-
-// Color
-
-.navbar.dark {
-    $default-color: #555;
-    $focused-color: #ccc;
-
-    color: $default-color;
-
-    ul:hover {
-        color: $focused-color;
-    }
-
-    li::after {
-        border-bottom: 1px solid darken($focused-color, 30%);
-    }
 }
