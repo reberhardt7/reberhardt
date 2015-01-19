@@ -11,6 +11,7 @@
     z-index: 10;
     color: $color;
 
+    @include transition(background-color 0.4s, box-shadow 0.4s);
 
     ul {
         list-style-type: none;
@@ -60,4 +61,6 @@
 .navbar.sticky {
     position: fixed;
     top: 0px;
+    background-color: #fff;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
 }

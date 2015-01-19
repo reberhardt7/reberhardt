@@ -18,7 +18,7 @@ body {
 }
 
 /* line 19, ../sass/partials/_layout.scss */
-.vertical-center, #pane1 .top img, #pane1 .bottom .text, #about .contents div {
+.vertical-center, #pane1 .centerpiece, #about .contents div {
   position: relative;
   top: 50%;
   -moz-transform: translateY(-50%);
@@ -29,7 +29,7 @@ body {
 
 @font-face {
   font-family: 'Fontin Sans';
-  src: url("Fontin_Sans_R_45b.otf");
+  src: url("/assets/fonts/Fontin_Sans_R_45b.otf");
 }
 /* line 6, ../sass/partials/_typography.scss */
 body {
@@ -104,8 +104,13 @@ a:hover {
   padding: 0;
   text-align: center;
   z-index: 10;
+  color: #555;
+  -moz-transition: background-color 0.4s, box-shadow 0.4s;
+  -o-transition: background-color 0.4s, box-shadow 0.4s;
+  -webkit-transition: background-color 0.4s, box-shadow 0.4s;
+  transition: background-color 0.4s, box-shadow 0.4s;
 }
-/* line 11, ../sass/partials/_navbar.scss */
+/* line 16, ../sass/partials/_navbar.scss */
 .navbar ul {
   list-style-type: none;
   padding: 0;
@@ -116,19 +121,19 @@ a:hover {
   -webkit-transition: color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out;
 }
-/* line 19, ../sass/partials/_navbar.scss */
+/* line 24, ../sass/partials/_navbar.scss */
 .navbar li {
   position: relative;
   display: inline-block;
 }
-/* line 24, ../sass/partials/_navbar.scss */
+/* line 29, ../sass/partials/_navbar.scss */
 .navbar a {
   color: inherit;
   text-decoration: none;
   padding: 1.2em 1em 1.2em 1em;
   display: inline-block;
 }
-/* line 33, ../sass/partials/_navbar.scss */
+/* line 38, ../sass/partials/_navbar.scss */
 .navbar li::after {
   display: block;
   position: absolute;
@@ -140,90 +145,71 @@ a:hover {
   -webkit-transition: ease-in-out 0.15s;
   transition: ease-in-out 0.15s;
   content: " ";
+  border-bottom: 1px solid #888888;
 }
-/* line 43, ../sass/partials/_navbar.scss */
+/* line 49, ../sass/partials/_navbar.scss */
 .navbar li:hover::after {
   left: 0;
   right: 0;
 }
 
-/* line 51, ../sass/partials/_navbar.scss */
-.navbar.bottom-anchor {
+/* line 57, ../sass/partials/_navbar.scss */
+.navbar.normal {
   position: absolute;
-  bottom: 0px;
+  bottom: 3em;
 }
 
-/* line 55, ../sass/partials/_navbar.scss */
-.navbar.top-anchor {
+/* line 61, ../sass/partials/_navbar.scss */
+.navbar.sticky {
   position: fixed;
   top: 0px;
-}
-
-/* line 62, ../sass/partials/_navbar.scss */
-.navbar.dark {
-  color: #555;
-}
-/* line 68, ../sass/partials/_navbar.scss */
-.navbar.dark ul:hover {
-  color: #ccc;
-}
-/* line 72, ../sass/partials/_navbar.scss */
-.navbar.dark li::after {
-  border-bottom: 1px solid gray;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 /* line 1, ../sass/partials/_homepage-pane-1.scss */
 #pane1 {
   padding: 0;
-}
-/* line 10, ../sass/partials/_homepage-pane-1.scss */
-#pane1 .top {
-  width: 100%;
-  height: 65%;
+  height: calc(100vh + 50px);
   background: #fff url("/assets/img/tex/subtle_grunge.png") repeat;
-}
-@media (max-height: 850px) {
-  /* line 10, ../sass/partials/_homepage-pane-1.scss */
-  #pane1 .top {
-    height: calc(100% - 18rem) !important;
-  }
-}
-/* line 19, ../sass/partials/_homepage-pane-1.scss */
-#pane1 .top img {
-  height: 80%;
-  top: 45%;
-  /* Not 50%, because the paper tear in the bottom pane takes up some space */
-}
-/* line 26, ../sass/partials/_homepage-pane-1.scss */
-#pane1 .bottom {
+  color: #333;
+  text-align: center;
   position: relative;
-  width: 100%;
-  height: 35%;
-  background: #1b1b1b;
 }
-@media (max-height: 850px) {
-  /* line 26, ../sass/partials/_homepage-pane-1.scss */
-  #pane1 .bottom {
-    height: 18rem !important;
-  }
+/* line 11, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .centerpiece {
+  top: 40%;
+  /* Not 50%, because the navbar takes up some space */
+  width: auto;
 }
-/* line 36, ../sass/partials/_homepage-pane-1.scss */
-#pane1 .bottom .paper-tear {
-  position: absolute;
-  top: -45px;
-  background: url("../img/tex/paper-tear.png") repeat-x;
-  background-size: 477.85388128px 50px;
-  width: 100%;
-  height: 50px;
+/* line 15, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .centerpiece img {
+  height: 25em;
 }
-/* line 45, ../sass/partials/_homepage-pane-1.scss */
-#pane1 .bottom .text {
-  color: #fff;
-}
-/* line 55, ../sass/partials/_homepage-pane-1.scss */
-#pane1 .bottom h1 {
+/* line 21, ../sass/partials/_homepage-pane-1.scss */
+#pane1 h1 {
   margin: 0;
   font-size: 5.5em;
+}
+/* line 26, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .down-chevron {
+  color: #999;
+  font-size: 3em;
+  display: block;
+  position: absolute;
+  bottom: 65px;
+  width: 100%;
+  left: 0;
+}
+/* line 37, ../sass/partials/_homepage-pane-1.scss */
+#pane1 .paper-tear {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: url("../img/tex/paper-tear.png") repeat-x;
+  background-size: 477.85388px 50px;
+  width: 100%;
+  height: 50px;
 }
 
 /* line 1, ../sass/partials/_homepage-about.scss */
