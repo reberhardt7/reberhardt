@@ -23,9 +23,14 @@
 
     .vertical-line {
         position: absolute;
-        left: $date-bubble-width;
         height: 100%;
         border-left: 1px solid $timeline-color;
+
+        // On mobile, put the line on the left side of the screen while making room for the dots
+        left: $timeline-dot-radius;
+
+        // On tablets+, put the line on the right side of the date bubbles
+        @include breakpoint($tablet) { left: $date-bubble-width }
     }
 
     // Dot on line
@@ -36,30 +41,50 @@
         height: $timeline-dot-radius * 2;
         width: $timeline-dot-radius * 2;
         position: absolute;
-        // Move the dot over to the end of the bubble; to center it on the line, subtract the radius
-        left: calc(#{$date-bubble-width} - #{$timeline-dot-radius});
         // Vertical center
         top: 50%;
+
+        // On mobile, put the dot on the top-left
+        left: 0;
+        top: 0.5em + $bubble-vertical-padding; // Half of the date bubble height
+
+        // On tablets+...
+        @include breakpoint($tablet) {
+            // Move the dot over to the end of the bubble; to center it on the line, subtract the radius
+            left: calc(#{$date-bubble-width} - #{$timeline-dot-radius});
+            // Vertical center
+            top: 50%;
+        }
     }
 
     li {
         position: relative;
         display: inline-block;
         width: 100%;
-        overflow: hidden;
+        overflow: hidden; // clearfix
         margin-top: $timeline-entry-vertical-padding;
         margin-bottom: $timeline-entry-vertical-padding;
 
         .bubble {
             position: absolute;
-            // vertically center text with bubble. 0.5em is half the height of the text
-            top: calc(50% - #{0.5em + $bubble-vertical-padding});
-            right: calc(100% - #{$date-bubble-width});
-            margin-right: $bubble-arrow-width; // Make room for the right arrow
             background: $bubble-color;
             padding: $bubble-vertical-padding 1em $bubble-vertical-padding 1em;
             @include border-radius(3px);
             border: $bubble-border-thickness solid $bubble-border-color;
+
+            // On mobile, put the bubble above the text and facing left
+            top: 0;
+            left: $bubble-arrow-width;
+
+            // On tablets+, put the bubble vertically centered facing right
+            @include breakpoint($tablet) {
+                // vertically center text with bubble. 0.5em is half the height of the text
+                top: calc(50% - #{0.5em + $bubble-vertical-padding});
+                right: calc(100% - #{$date-bubble-width});
+                left: auto;
+                // Make room for the right arrow
+                margin-right: $bubble-arrow-width;
+            }
         }
 
         // The ::before and ::after pseudo elements are used to create the
@@ -69,10 +94,13 @@
 
         .bubble::before, .bubble::after {
             position: absolute;
-            left: 100%;
             width: 0;
             height: 0;
             content: " ";
+            // Left-facing on mobile
+            right: 100%;
+            // Right-facing on tablets+
+            @include breakpoint($tablet) { left: 100%; right: auto; }
         }
 
         .bubble::before {
@@ -80,7 +108,13 @@
             top: calc(50% - #{$size});
             border-top: $size solid transparent;
             border-bottom: $size solid transparent;
-            border-left: $size solid $bubble-border-color;
+            // Left-facing on mobile
+            border-right: $size solid $bubble-border-color;
+            // Right-facing on tablets+
+            @include breakpoint($tablet) {
+                border-right: none;
+                border-left: $size solid $bubble-border-color;
+            }
         }
 
         .bubble::after {
@@ -88,20 +122,44 @@
             top: calc(50% - #{$size});
             border-top: $size solid transparent;
             border-bottom: $size solid transparent;
-            border-left: $size solid $bubble-color;
+            // Left-facing on mobile
+            border-right: $size solid $bubble-color;
+            // Right-facing on tablets+
+            @include breakpoint($tablet) {
+                border-right: none;
+                border-left: $size solid $bubble-color;
+            }
         }
 
         img {
-            float: left;
-            margin-left: $date-bubble-width + 1em;
-            margin-right: 2em;
-            width: $img-width;
+            width: 80%;
+            // Make space for the date bubbles above, plus some additional spacing (1.5em)
+            margin-top: 1em + $bubble-vertical-padding + 1.5em;
+
+            @include breakpoint($tablet) {
+                float: left;
+                margin-left: $date-bubble-width + 1em;
+                margin-right: 2em;
+                margin-top: 0;
+                width: $img-width;
+            }
         }
 
         .info {
-            float: left;
+            padding: 1em;
             text-align: left;
-            width: calc(100% - #{$date-bubble-width} - #{$img-width} - 3em); // Width - bubble - img - img padding
+
+            h2 { text-align: center; }
+
+            p { margin: 0; }
+
+            @include breakpoint($tablet) {
+                float: left;
+                h2 { text-align: left; }
+                // Width = full width - bubble - img - img padding
+                width: calc(100% - #{$date-bubble-width} - #{$img-width} - 3em);
+                padding: 0;
+            }
         }
     }
 }

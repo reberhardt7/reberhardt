@@ -8,25 +8,42 @@
     a:hover { color: lighten($link-color, 10%); }
 
     .well {
-        $img-width: 15em;
-        $img-margin-right: 1.5em;
+        $padding: 1em;
 
         display: inline-block;
         background: rgba(200, 200, 200, .3);
-        padding: 1em;
-        margin: 1em;
+        margin: 0.5em 1em 0.5em 1em;
         @include border-radius(6px);
 
         img {
-            width: $img-width;
-            float: left;
-            margin-right: $img-margin-right;
+            width: 80%;
+            margin: $padding;
         }
 
         .info {
-            float: left;
+            margin: $padding;
             text-align: left;
-            width: calc(100% - #{$img-width} - #{$img-margin-right});
+        }
+
+        h2 { text-align: center }
+
+        @include breakpoint($tablet) {
+            $img-width: 15em;
+            $img-margin-right: 1.5em;
+
+            img {
+                width: $img-width;
+                float: left;
+                margin-right: $img-margin-right;
+            }
+
+            .info {
+                margin-left: 0;
+                float: left;
+                width: calc(100% - #{$padding + $img-width + $img-margin-right + $padding});
+            }
+
+            h2 { text-align: left }
         }
     }
 }

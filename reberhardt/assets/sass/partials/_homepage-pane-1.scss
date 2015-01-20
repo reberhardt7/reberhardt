@@ -9,13 +9,18 @@
     position: relative;
 
     .centerpiece {
+        width: auto;
         @extend .vertical-center;
         top: 40%; /* Not 50%, because the navbar takes up some space */
 
-        img {
-            height: 25em;
+        @include breakpoint($mobile) {
+            img { height: 15em; }
         }
-        width: auto;
+
+        @include breakpoint($tablet) {
+            img { height: 30em; }
+        }
+
     }
 
     h1 {
@@ -24,6 +29,7 @@
     }
 
     .down-chevron {
+        margin: 0;
         color: #999;
         font-size: 3em;
         display: block;
@@ -42,6 +48,7 @@
         background-size: 2093/219*$paper-tear-height $paper-tear-height;
         width: 100%;
         height: $paper-tear-height;
+        margin: 0;
     }
 
 }

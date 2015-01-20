@@ -46,6 +46,10 @@
         left: 0;
         right: 0;
     }
+
+    @include breakpoint($mobile) {
+        display: none;
+    }
 }
 
 // Positioning

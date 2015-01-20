@@ -19,20 +19,24 @@ function stickNavbar() {
 }
 
 $(document).ready(function() {
-    // Save the viewport height (see $(window).resize below) and the navbar's position
-    // when it's not sticky (which we need to see if we should unsticky it when scrolling up)
-    viewportHeight = window.innerHeight;
-    navbarNormalOffset = $(navbar).offset().top;
-    // If the document was loaded scrolled down, we might need to stick the navbar already
-    stickNavbar();
+    if($(navbar).is(':visible')) { // Don't run this on mobile
+        // Save the viewport height (see $(window).resize below) and the navbar's position
+        // when it's not sticky (which we need to see if we should unsticky it when scrolling up)
+        viewportHeight = window.innerHeight;
+        navbarNormalOffset = $(navbar).offset().top;
+        // If the document was loaded scrolled down, we might need to stick the navbar already
+        stickNavbar();
+    }
 })
 $(window).scroll(function() {
-    stickNavbar();
+    if($(navbar).is(':visible')) stickNavbar();
 })
 $(window).resize(function() {
-    // Update the normal position of the navbar (with a smaller viewport, it moves up)
-    navbarNormalOffset += (window.innerHeight - viewportHeight);
-    viewportHeight = window.innerHeight;
+    if($(navbar).is(':visible')) {
+        // Update the normal position of the navbar (with a smaller viewport, it moves up)
+        navbarNormalOffset += (window.innerHeight - viewportHeight);
+        viewportHeight = window.innerHeight;
+    }
 })
 
 
