@@ -5,13 +5,163 @@
 
 // Partials
 @import "partials/layout";
-@import "partials/typography";
-@import "partials/navbar";
+// @import "partials/typography";
+// @import "partials/navbar";
 
-// Homepage
-@import "partials/homepage-pane-1";
-@import "partials/homepage-about";
-@import "partials/homepage-software";
-@import "partials/homepage-education";
-@import "partials/homepage-photography";
-@import "partials/homepage-connect";
+// // Homepage
+// @import "partials/homepage-pane-1";
+// @import "partials/homepage-about";
+// @import "partials/homepage-software";
+// @import "partials/homepage-education";
+// @import "partials/homepage-photography";
+// @import "partials/homepage-connect";
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	font-family: 'Lato', sans-serif;
+}
+
+@keyframes swing {
+			0% { transform-origin: top; transform: rotateX(0deg); }
+			50% { transform-origin: top; transform: rotateX(45deg); }
+			100% { transform-origin: top; transform: rotateX(0deg); }
+		}
+
+.center-card {
+	@include vertical-center;
+	margin-left: auto;
+	margin-right: auto;
+	// width: 620px;
+	width: 100%;
+	height: 200px;
+	// border: 3px solid #333;
+	color: #333;
+	text-align: center;
+
+	.title-text {
+		margin-bottom: 1.5em;
+
+		.heavy {
+			font-size: 3.5em;
+			font-weight: 700;
+			margin-right: 10px;
+		}
+
+		.light {
+			font-size: 3.5em;
+			font-weight: 300;
+		}
+	}
+
+	/* Swinging tabs */
+	// .links {
+	// 	border-top: 2px solid #333;
+	// 	text-align: right;
+
+	// 	a, a:visited {
+	// 		font-weight: 300;
+	// 		color: #eee;
+	// 		position: relative;
+	// 		text-decoration: none;
+	// 		display: inline-block;
+	// 		margin-left: 1.25em;
+	// 		margin-right: 1.25em;
+	// 	}
+
+	// 	a::before {
+	// 		content: '';
+	// 		display: block;
+	// 		// transform: rotate(180deg);
+	// 		// border-bottom: 1.5em solid #333;
+	// 		// border-left: 0.5em solid transparent;
+	// 		// border-right: 0.5em solid transparent;
+	// 		// height: 0;
+	// 		left: -15px;
+	// 		right: -15px;
+	// 		position: absolute;
+	// 		z-index: -10;
+	// 		border-color: #333 transparent transparent;
+	// 		border-width: 1.5em 10px 0px;
+	// 		border-style: solid;
+	// 	}
+
+
+
+	// 	a:hover {
+	// 		animation: swing 0.25s ease 0ms 1 alternate;
+	// 		color: #fff;
+	// 	}
+	// }
+
+	.links {
+		text-align: center;
+		font-weight: 300;
+		color: #555;
+		font-size: 105%;
+		line-height: 250%;
+
+		a, a:visited {
+			position: relative;
+			text-decoration: none;
+			display: inline-block;
+			margin-left: 0.5em;
+			//margin-right: 0.25em;
+			color: #555;
+		}
+
+
+		a:hover {
+			color: #333;
+		}
+
+		a::before {
+			display: block;
+			position: absolute;
+			left: 50%;
+			right: 50%;
+			bottom: calc( 100% - 6px );
+			@include transition($navbar-underline-transition-speed ease-in-out);
+			content: " ";
+			border-bottom: 1px solid #555;
+		}
+
+		a::after {
+			display: block;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: calc( 100% - 6px );
+			@include transition($navbar-underline-transition-speed ease-in-out);
+			content: " ";
+			border-bottom: 1px solid #555;
+		}
+
+		a:hover::after, a:hover::before {
+			left: -0.5em;
+			right: -0.5em;
+			border-bottom: 1px solid #333;
+		}
+	}
+}
+
+.footer {
+	text-align: center;
+	font-size: 1.25em;
+	position: absolute;
+	bottom: 0.5em;
+	width: 100%;
+
+	a, a:visited {
+		color: #555;
+		margin-right: 0.25em;
+	}
+}
