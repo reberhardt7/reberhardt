@@ -1,39 +1,64 @@
-body {
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+// Sticky footer
+
+* {
     margin: 0;
 }
 
-.pane {
-    position: relative;
-    $vertical-padding: 3em;
-    text-align: center;
-    width: 100%;
-    padding-top: $vertical-padding;
-    padding-bottom: $vertical-padding;
-    min-height: calc(100vh - 2 * #{$vertical-padding});
-
-    > * {
-        display: inline-block;
-        width: calc(100% - 2em);
-        margin-left: 1em;
-        margin-right: 1em;
-
-        @include breakpoint($screen) {
-            width: 1000px;
-            margin-left: 0;
-            margin-right: 0;
-        }
-    }
-
-    // The hash anchor provides a target for the browser to scroll to when a hash link is clicked
-    // such that the browser scrolls to <height of navbar> above the actual element we want to go
-    // to. This way, the sticky navbar doesn't cover anything up
-    .hash-anchor {
-        position: absolute;
-        height: 0;
-        width: 0;
-        top: -1 * (1em + $navbar-vertical-padding*2);
-    }
+html, body {
+    height: 100%;
 }
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto #{-$footer-height};
+}
+
+.footer, .push {
+    height: $footer-height;
+}
+
+// .pane {
+//     position: relative;
+//     $vertical-padding: 3em;
+//     text-align: center;
+//     width: 100%;
+//     padding-top: $vertical-padding;
+//     padding-bottom: $vertical-padding;
+//     min-height: calc(100vh - 2 * #{$vertical-padding});
+
+//     > * {
+//         display: inline-block;
+//         width: calc(100% - 2em);
+//         margin-left: 1em;
+//         margin-right: 1em;
+
+//         @include breakpoint($screen) {
+//             width: 1000px;
+//             margin-left: 0;
+//             margin-right: 0;
+//         }
+//     }
+
+//     // The hash anchor provides a target for the browser to scroll to when a hash link is clicked
+//     // such that the browser scrolls to <height of navbar> above the actual element we want to go
+//     // to. This way, the sticky navbar doesn't cover anything up
+//     .hash-anchor {
+//         position: absolute;
+//         height: 0;
+//         width: 0;
+//         top: -1 * (1em + $navbar-vertical-padding*2);
+//     }
+// }
 
 @mixin vertical-center {
     position: relative;

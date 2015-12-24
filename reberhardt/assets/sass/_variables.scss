@@ -4,17 +4,21 @@ $tablet: 768px;
 $screen: 1280px;
 
 // Fonts
-$light: 100;
-$regular: 300;
-$bold: 500;
+$light: 300;
+$regular: 400;
+$bold: 700;
 
-$base-font-family: 'Raleway';
-$base-font-weight: $regular;
+// Colors
+$blue: #1D5FD0;
 
-$header-font-family: 'Fontin Sans';
-$header-font-weight: $regular;
+$base-font-family: 'Lato';
+$base-font-weight: $light;
 
-$link-color: #1EAEDB;
+$header-font-family: 'Lato';
+$header-font-weight: $light;
+$header-em-font-weight: $regular;
+
+$link-color: $blue;
 
 // Navbar
 $navbar-underline-transition-speed: .15s;
@@ -23,3 +27,18 @@ $navbar-vertical-padding: 1.2em;
 $navbar-horizontal-padding: 1em;
 $navbar-bg-color: #fff;
 $navbar-color: #555;
+
+
+// Timeline
+$timeline-color: #ccc;
+$timeline-dot-radius: 4px;
+$date-bubble-width: 10em;
+$bubble-color: #fff;
+$bubble-border-color: #aaa;
+$bubble-border-thickness: 1px;
+$bubble-vertical-padding: .25em;
+$bubble-arrow-width: 20px;
+$timeline-entry-vertical-padding: 15px;
+$img-width: 10em;
+
+$footer-height: 2rem;

@@ -1,61 +1,71 @@
-@font-face {
-    font-family: 'Fontin Sans';
-    src: url('/assets/fonts/Fontin_Sans_R_45b.otf');
-}
-
 body {
-    font-family: $base-font-family;
+    font-family: $base-font-family, sans-serif;
     font-weight: $base-font-weight;
-    line-height: 1.6;
-    font-size: 0.95em;
+    // line-height: 1.6;
+    // font-size: 0.95em;
 }
 
 h1, h2, h3 {
-    margin-top: 0;
-    font-weight: $header-font-weight;
-}
-
-h1 {
+    padding-top: 0.67em;
+    padding-bottom: 0.33em;
     font-family: $header-font-family;
-    font-size: 3em;
-    @include breakpoint($tablet) { font-size: 4em; }
-    margin-bottom: 0.5em;
-    line-height: 1.2;
+    font-weight: $header-font-weight;
+
+    em {
+        font-weight: $header-em-font-weight;
+        font-style: normal;
+    }
 }
 
-h2 {
-    font-family: $base-font-family;
-    font-size: 2em;
-    margin-bottom: 0.25em;
-}
+// h1 {
+//     font-family: $header-font-family;
+//     font-size: 3em;
+//     @include breakpoint($tablet) { font-size: 4em; }
+//     margin-bottom: 0.5em;
+//     line-height: 1.2;
+// }
 
-h3 {
-    font-family: $base-font-family;
-    font-size: 1.6em;
-    margin-bottom: 0.25em;
-}
+// h2 {
+//     font-family: $base-font-family;
+//     font-size: 2em;
+//     margin-bottom: 0.25em;
+// }
 
-.subheading {
-    margin: 10px;
-    font-size: 2em;
-    font-weight: $light;
-}
+// h3 {
+//     font-family: $base-font-family;
+//     font-size: 1.6em;
+//     margin-bottom: 0.25em;
+// }
 
-p {
-    margin-top: 0;
-}
+// .subheading {
+//     margin: 10px;
+//     font-size: 2em;
+//     font-weight: $light;
+// }
 
-a {
+// p {
+//     margin-top: 0;
+// }
+
+a, a:visited {
     color: $link-color;
 }
 a:hover {
-    color: darken($link-color, 5%);
+    color: darken($link-color, 10%);
 }
 
-.quote {
+.block-quote {
     display: inline-block;
-    margin-top: .75em;
-    margin-bottom: .75em;
+    position: relative;
+    padding-top: 0.5em;
     padding-left: 1.5em;
-    border-left: 3px solid;
+}
+
+.block-quote::after {
+    content: ' ';
+    position: absolute;
+    top: 0.5em;
+    bottom: 0;
+    left: 0;
+    border-left: 3px solid #ccc;
 }

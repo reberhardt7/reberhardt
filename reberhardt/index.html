@@ -7,22 +7,70 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-        <div class="center-card">
-            <div class="title-text">
-                <span class="heavy">Hi.</span>
-                <span class="light">I'm Ryan Eberhardt.</span>
+        <div class="wrapper">
+            <div class="nav top hidden">
+                <a class="nav-link" data-target="software" href="/software">Programming</a>
+                <a class="nav-link" data-target="photography" href="/photography">Photography</a>
+                <a class="nav-link" data-target="music" href="/music">Music</a>
+                <a class="nav-link" data-target="teaching" href="/teaching">Teaching</a>
+                <a class="nav-link" data-target="resume" href="/resume.pdf">Resume</a>
             </div>
-            <div class="links">
-                <!-- <a href="#">Programming</a>
-                <a href="#">Photography</a>
-                <a href="#">Music</a>
-                <a href="#">Teaching</a>
-                <a href="#">Resume</a> -->
-                <a href="#">Software developer</a>,
-                <a href="#">photographer</a>,
-                <a href="#">musician</a>,
-                <a href="#">teacher</a>.
+            <div class="banner hidden">
+                <div class="content">
+                    <div>
+                        <span class="banner-light">I like </span>
+                        <span class="banner-heavy" id="fkalsjdf-action">fkalsjdf</span>
+                        <!-- ^ A strange bug causes the "flipping text"
+                        animation to stutter when transitioning to the first
+                        element. Hence this dummy element -->
+                        <span class="banner-heavy" id="software-action">writing software.</span>
+                        <span class="banner-heavy" id="photography-action">taking pictures.</span>
+                        <span class="banner-heavy" id="music-action">making music.</span>
+                        <span class="banner-heavy" id="teaching-action">teaching people.</span>
+                    </div>
+                    <div class="blurbs">
+                        <p id="software-blurb">I have deep experience with full-stack web development. I also enjoy working with machine learning, cybersecurity, and high performance computing.</p>
+                        <p id="photography-blurb">My favorite genres include landscape and candid photography. Follow me <a href="https://www.flickr.com/photos/reberhardt/">on Flickr</a>.</p>
+                        <p id="music-blurb">I play violin, drums, piano, and guitar. I also like to write music.</p>
+                        <p id="teaching-blurb">I like sharing my knowledge with other people and helping them build/learn cool things.</p>
+                    </div>
+                </div>
             </div>
+            <div class="center-container">
+                <div class="center-card">
+                    <div class="title-text">
+                        <span class="banner-heavy">Hi.</span>
+                        <span class="banner-light">I'm Ryan Eberhardt.</span>
+                    </div>
+                    <div class="about">
+                        I love programming, digital media, education, and any
+                        intersection of these areas.
+                    </div>
+                    <div class="nav">
+                        <a class="nav-link" data-target="software" href="/software">Programming</a>
+                        <a class="nav-link" data-target="photography" href="/photography">Photography</a>
+                        <a class="nav-link" data-target="music" href="/music">Music</a>
+                        <a class="nav-link" data-target="teaching" href="/teaching">Teaching</a>
+                        <a class="nav-link" data-target="resume" href="/resume.pdf">Resume</a>
+                        <!-- <a href="#">Software developer</a>,
+                        <a href="#">photographer</a>,
+                        <a href="#">musician</a>,
+                        <a href="#">teacher</a>. -->
+                    </div>
+                </div>
+            </div>
+            <div id="content">
+                <div class="loading-spinner"></div>
+            </div>
+            <div class="backgrounds">
+                <div class="gray-overlay"></div>
+                <div id="software-background"></div>
+                <div id="photography-background"></div>
+                <div id="music-background"></div>
+                <div id="teaching-background"></div>
+                <div id="resume-background"></div>
+            </div>
+            <div class="push"></div>
         </div>
         <div class="footer">
             <a href="#" onMouseOver="this.href = atob('bWFpbHRvOnJ5YW5AcmViZXJoYXJkdC5jb20=') //reduce spam"><i class="fa fa-envelope"></i></a>
@@ -31,6 +79,8 @@
             <a href="https://plus.google.com/+RyanEberhardt"><i class="fa fa-google-plus-square"></i></a>
             <a href="https://www.facebook.com/ryanaeberhardt"><i class="fa fa-facebook-square"></i></a>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="assets/js/app.js"></script>
     </body>
 </html>
 
