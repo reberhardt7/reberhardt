@@ -121,18 +121,30 @@
 			}
 		}
 
-		img {
-			width: 80%;
-			// Make space for the date bubbles above, plus some additional
-			// spacing (1.5em)
-			padding-top: 1em + $bubble-vertical-padding + 1.5em;
+		> a, > img, > a img {
+			// Contains the logo image
+			@include breakpoint($mobile) {
+				display: block;
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
+		}
 
-			@include breakpoint($tablet) {
-				float: left;
-				margin-left: $date-bubble-width + 1em;
-				margin-right: 2em;
-				padding-top: 0;
-				width: $img-width;
+		img {
+			float: left;
+			margin-left: $date-bubble-width + 1em;
+			margin-right: 2em;
+			padding-top: 0;
+			width: $img-width;
+
+			@include breakpoint($mobile) {
+				width: 80%;
+				// Make space for the date bubbles above, plus some additional
+				// spacing (1.5em)
+				padding-top: 1em + $bubble-vertical-padding + 1.5em;
+				margin: 0;
+				float: none;
+				text-align: center;
 			}
 		}
 

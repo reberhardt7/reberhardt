@@ -79,43 +79,50 @@
 // "flying in"?
 $fly-out-animation-delay: 0.05s;
 
-.center-card.transition {
-	.title-text {
-		animation: move-out #{$page-transition-time/2} ease-in
-			#{$fly-out-animation-delay*0} 1 forwards;
-
-	}
-
-	.about {
-		animation: move-out #{$page-transition-time/2} ease-in
-			#{$fly-out-animation-delay*1} 1 forwards;
-	}
-
-	.nav {
-		animation: move-out #{$page-transition-time/2} ease-in
-			#{$fly-out-animation-delay*2} 1 forwards;
+@include breakpoint($mobile) {
+	.center-card.transition {
+		opacity: 0;
 	}
 }
+@include breakpoint($tablet) {
+	.center-card.transition {
+		.title-text {
+			animation: move-out #{$page-transition-time/2} ease-in
+				#{$fly-out-animation-delay*0} 1 forwards;
 
-.center-card.return {
-	.title-text {
-		@include transform(translateX(100%));
-		opacity: 0;
-		animation: move-in #{$page-transition-time/2} ease-out
-			#{$fly-out-animation-delay*0} 1 forwards;
+		}
+
+		.about {
+			animation: move-out #{$page-transition-time/2} ease-in
+				#{$fly-out-animation-delay*1} 1 forwards;
+		}
+
+		.nav {
+			animation: move-out #{$page-transition-time/2} ease-in
+				#{$fly-out-animation-delay*2} 1 forwards;
+		}
 	}
 
-	.about {
-		@include transform(translateX(100%));
-		opacity: 0;
-		animation: move-in #{$page-transition-time/2} ease-out
-			#{$fly-out-animation-delay*1} 1 forwards;
-	}
+	.center-card.return {
+		.title-text {
+			@include transform(translateX(100%));
+			opacity: 0;
+			animation: move-in #{$page-transition-time/2} ease-out
+				#{$fly-out-animation-delay*0} 1 forwards;
+		}
 
-	.nav {
-		@include transform(translateX(100%));
-		opacity: 0;
-		animation: move-in #{$page-transition-time/2} ease-out
-			#{$fly-out-animation-delay*2} 1 forwards;
+		.about {
+			@include transform(translateX(100%));
+			opacity: 0;
+			animation: move-in #{$page-transition-time/2} ease-out
+				#{$fly-out-animation-delay*1} 1 forwards;
+		}
+
+		.nav {
+			@include transform(translateX(100%));
+			opacity: 0;
+			animation: move-in #{$page-transition-time/2} ease-out
+				#{$fly-out-animation-delay*2} 1 forwards;
+		}
 	}
 }

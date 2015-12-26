@@ -30,6 +30,8 @@ function loadPage(nextPage) {
     var oldPage = page;
     page = nextPage;
 
+    var onMobile = $(window).width() < 786;
+
     // Don't do anything if we aren't going anywhere
     if(oldPage == nextPage) return;
 
@@ -40,7 +42,10 @@ function loadPage(nextPage) {
         $('.footer').removeClass('dark');
         $('.nav.top').removeClass('hidden');
         $('.banner').removeClass('hidden');
-        setTimeout(function(){ $('.center-container').hide(); }, 750);
+        // Hide the homepage text once it has transitioned out (or immediately
+        // on mobile, on which there are no transitions enabled)
+        if(onMobile) $('.center-container').hide();
+        else setTimeout(function(){ $('.center-container').hide(); }, 750);
     }
 
     if(nextPage == 'home') {
@@ -78,25 +83,37 @@ function loadPage(nextPage) {
     if(oldPage == 'home') {
         $('.banner .content #'+page+'-action').css('display', 'inline-block');
     } else if(nextPage != 'home') {
-        // We need to make the old text "flip" out and the new text flip in
-        $('.banner .content #'+oldPage+'-action').addClass('exiting');
-        $('.banner .content #'+nextPage+'-action').addClass('entering');
-        setTimeout(function(){
-            $('.banner .content #'+oldPage+'-action').removeClass('exiting').css('display', 'none');
-            $('.banner .content #'+nextPage+'-action').css('display', 'inline-block');
-        }, 150);
-        setTimeout(function() {
-            $('.banner .content #'+nextPage+'-action').removeClass('entering');
-        }, 200);
+        if(!onMobile) {
+            // We need to make the old text "flip" out and the new text flip in
+            $('.banner .content #'+oldPage+'-action').addClass('exiting');
+            $('.banner .content #'+nextPage+'-action').addClass('entering');
+            setTimeout(function(){
+                $('.banner .content #'+oldPage+'-action').removeClass('exiting').css('display', 'none');
+                $('.banner .content #'+nextPage+'-action').css('display', 'inline-block');
+            }, 150);
+            setTimeout(function() {
+                $('.banner .content #'+nextPage+'-action').removeClass('entering');
+            }, 200);
+        }
+        else {
+            $('.banner .content #'+oldPage+'-action').hide();
+            $('.banner .content #'+page+'-action').css('display', 'inline-block');
+        }
     }
 
     // We're going to another page, so we hide the current one
     $('#'+oldPage+'-page').removeClass('show');
-    // Remove the page from the flow once it transitions out so that it
-    // doesn't add height to the page (even with visibility: hidden, if a
-    // .page div has a greater height than the currently visible .page div,
-    // the page will be scrollable past the footer)
-    setTimeout(function() { $('#'+oldPage+'-page').hide(); }, 250);
+    if(!onMobile) {
+        // Remove the page from the flow once it transitions out so that it
+        // doesn't add height to the page (even with visibility: hidden, if a
+        // .page div has a greater height than the currently visible .page div,
+        // the page will be scrollable past the footer)
+        setTimeout(function() { $('#'+oldPage+'-page').hide(); }, 250);
+    }
+    else {
+        // We don't have transitions so we can remove the div immediately
+        $('#'+oldPage+'-page').hide();
+    }
     $('#content').css('height', 0);
 
     // If we are transitioning to some child page (not the home page), we
@@ -115,17 +132,19 @@ function loadPage(nextPage) {
                 // class so that the new content "drifts" up when displayed
                 if(oldPage == 'home') $('#content').addClass('firstload');
                 // Show the new content
-                if(oldPage == 'home') {
+                if(oldPage == 'home' || onMobile) {
                     newPageDiv.addClass('show');
                 }
-                // There seems to be a bug where when the new div is created
-                // and the show class is immediately added, the browser jumps
-                // straight to making it visible and skips the fade in. So
-                // wait 10ms for the browser to chill out and process the new
-                // DOM before fading it in. (this is bad but oh well)
-                else setTimeout(function() {
-                    newPageDiv.addClass('show');
-                }, 10);
+                else if(!onMobile) { // we want fade in transition
+                    // There seems to be a bug where when the new div is created
+                    // and the show class is immediately added, the browser jumps
+                    // straight to making it visible and skips the fade in. So
+                    // wait 10ms for the browser to chill out and process the new
+                    // DOM before fading it in. (this is bad but oh well)
+                    setTimeout(function() {
+                        newPageDiv.addClass('show');
+                    }, 10);
+                }
                 // Since the .page divs are absolutely positioned, they
                 // take no space in #content, so #content has a height of
                 // zero and the sticky footer ends up consequently
@@ -147,7 +166,12 @@ function loadPage(nextPage) {
             if(oldPage == 'home') $('#content').addClass('firstload');
             // Show the "new" content
             $('#'+nextPage+'-page').show();
-            setTimeout(function() { $('#'+nextPage+'-page').addClass('show'); }, 10);
+            if(!onMobile) {
+                setTimeout(function() { $('#'+nextPage+'-page').addClass('show'); }, 10);
+            }
+            else {
+                $('#'+nextPage+'-page').addClass('show');
+            }
             // Since the .page divs are absolutely positioned, they
             // take no space in #content, so #content has a height of
             // zero and the sticky footer ends up consequently
@@ -164,9 +188,12 @@ function loadPage(nextPage) {
     // then if we go back to the home page and then click a different page,
     // the firstload class won't be newly introduced (since it was already
     // there) and the new content won't drift up.
-    if(oldPage == 'home') setTimeout(function() {
-        $('#content').removeClass('firstload');
-    }, 1000);
+    if(oldPage == 'home') {
+        if(!onMobile) setTimeout(function() {
+            $('#content').removeClass('firstload');
+        }, 1000);
+        else $('#content').removeClass('firstload');
+    }
 }
 
 $(window).resize(function() {

@@ -8,6 +8,17 @@
 }
 
 .backgrounds {
+	// We need to make sure that #backgrounds covers the whole page banner,
+	// even if the page is shorter than the banner (so we'd need to scroll
+	// down to see the whole banner), so we set a min-height. The (1/0.75)
+	// factor compensates for the fact that background images inside
+	// #backgrounds are translated up by 25% and would be translated too far
+	// if #backgrounds got too small
+	min-height: #{(1/0.75)*($nav-height + $banner-height)};
+	@include breakpoint($mobile-vert) {
+	min-height: #{(1/0.75)*(1.75*$nav-height + $banner-height)};
+	}
+
 	// The .backgrounds pseudo elements (used to mask out the background when
 	// a page other than the home page is being displayed) are translated
 	// above and below .backgrounds on the home page. The .backgrounds::after
@@ -28,17 +39,26 @@
 		position: absolute;
 		left: 0;
 		right: 0;
-		@include transition(transform $page-transition-time ease-in-out);
+		@include breakpoint($tablet) {
+			@include transition(transform $page-transition-time ease-in-out);
+		}
 	}
 
 	&::before {
 		top: 0;
 		height: $nav-height;
 		@include transform(translateY(#{-$nav-height}));
+		@include breakpoint($mobile-vert) {
+			height: 1.75*$nav-height;
+			@include transform(translateY(#{-1.75*$nav-height}));
+		}
 	}
 
 	&::after {
 		top: #{$nav-height + $banner-height};
+		@include breakpoint($mobile-vert) {
+			top: #{1.75*$nav-height + $banner-height};
+		}
 		bottom: 0;
 		@include transform(translateY(100%));
 	}
@@ -55,7 +75,9 @@
 		opacity: 0;
 		z-index: -10;
 		content: "";
-		@include transition(opacity, $background-transition-time, ease-in-out);
+		@include breakpoint($tablet) {
+			@include transition(opacity, $background-transition-time, ease-in-out);
+		}
 	}
 	&.visible .gray-overlay {
 		opacity: 0.6;
@@ -75,7 +97,9 @@
 	div {
 		@include background-size(cover !important);
 		opacity: 0;
-		@include transition(opacity $background-transition-time ease-in-out, transform $page-transition-time ease-in-out);
+		@include breakpoint($tablet) {
+			@include transition(opacity $background-transition-time ease-in-out, transform $page-transition-time ease-in-out);
+		}
 	}
 
 	#software-background {

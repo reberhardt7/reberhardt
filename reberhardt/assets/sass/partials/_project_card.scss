@@ -4,6 +4,7 @@
 	$card-image-size: 30%;
 
 	width: 49%;
+	@include breakpoint($mobile) { width: 100%; };
 	padding: $card-padding;
 	display: inline-block;
 	position: relative;
@@ -25,6 +26,11 @@
 		h3 { padding: 0; }
 	}
 
+	// Make room for .at-a-glance (which is absolutely positioned)
+	.at-a-glance-push {
+		height: 2em;
+	}
+
 	// This is a little bar at the bottom of each project card with info on
 	// technologies used and dates the project was being worked on
 	.at-a-glance {
@@ -32,24 +38,47 @@
 		border-bottom: 1px dashed #ddd;
 		position: absolute;
 		bottom: #{$card-padding + 0.1em};
+		height: 1.9em;
 		left: calc( #{$card-image-size} + #{$card-padding + 0.4em} );
 		right: $card-padding;
-		padding-top: 0.25em;
-		padding-bottom: 0.1em;
+		// padding-top: 0.25em;
+		// padding-bottom: 0.1em;
+		// white-space: nowrap;
 	}
 
 	.dates {
+		position: absolute;
+		right: 0;
+		top: 0.25em;
+		padding-left: 0.5em;
+		padding-top: 0.35em;
 		display: inline-block;
 		float: right;
 		font-size: 80%;
-		position: relative;
-		top: 0.2em;
+		background: #fff;
+	}
+
+	.dates::after {
+		content: ' ';
+		position: absolute;
+		right: 100%;
+		top: 0;
+		bottom: 0;
+		width: 2em;
+		@include background(linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)));
 	}
 
 	.technologies {
+		position: absolute;
+		left: 0;
+		top: 0.25em;
 		list-style-type: none;
 		padding: 0;
 		float: left;
+		display: block;
+		overflow: hidden;
+		white-space: nowrap;
+		max-width: calc( 100% - 1em );
 
 		li {
 			display: inline-block;
