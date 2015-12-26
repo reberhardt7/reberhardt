@@ -169,6 +169,16 @@ function loadPage(nextPage) {
     }, 1000);
 }
 
+$(window).resize(function() {
+    if(page != 'home') {
+        // Pages are stored in .page divs, which are absolutely positioned
+        // inside of #content. Since they're absolutely positioned and take up
+        // no space in the flow, when the page reflows we need to manually
+        // adjust #content's height to match its visible child div
+        $('#content').css('height', $('#'+page+'-page').height() + 'px');
+    }
+})
+
 $('.nav-link').click(function() {
     if(this.getAttribute('data-target') != 'resume') {
         loadPage(this.getAttribute('data-target'));
