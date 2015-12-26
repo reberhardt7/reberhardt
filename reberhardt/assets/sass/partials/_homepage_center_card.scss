@@ -1,0 +1,121 @@
+// Flies off the screen to the left
+@keyframes move-out {
+	0% {
+		@include transform(translateX(0));
+		opacity: 1;
+	}
+	100% {
+		@include transform(translateX(-100%));
+		opacity: 0;
+	}
+}
+
+// Flies in from the right
+@keyframes move-in {
+	0% {
+		@include transform(translateX(100%));
+		opacity: 0;
+	}
+	100% {
+		@include transform(translateX(0));
+		opacity: 1;
+	}
+}
+
+.center-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100%;
+}
+
+.center-card {
+	$height: 300px;
+	height: $height;
+	$width: 650px;
+	max-width: $width;
+	
+	// If the full card can fit on the screen, then we want to vertical
+	// center. Otherwise, we just want it to flow normally (with the top of
+	// the card at the top of the page)
+	@media screen and ( min-height: $height ) {
+		@include vertical-center;
+	}
+	@media screen and ( max-height: $height ) {
+	}
+	// Horizontal center
+	margin-left: auto;
+	margin-right: auto;
+
+	position: relative;
+	text-align: center;
+	text-shadow: 0px 2px 4px rgba(0, 0, 0, 0);
+	@include transition(text-shadow #{$background-transition-time/2} ease-in-out,
+						color #{$background-transition-time/2} ease-in-out);
+
+	.title-text {
+		padding-bottom: 1.5em;
+		position: relative;
+
+		h1 {
+			padding: 0;
+		}
+	}
+
+	.about {
+		font-weight: 300;
+		margin-bottom: 1.5em;
+		position: relative;
+	}
+}
+
+.center-card.dark {
+	color: #eee;
+	text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+// By how much should each subsequent element be delayed in "flying out" or
+// "flying in"?
+$fly-out-animation-delay: 0.05s;
+
+.center-card.transition {
+	.title-text {
+		animation: move-out #{$page-transition-time/2} ease-in
+			#{$fly-out-animation-delay*0} 1 forwards;
+
+	}
+
+	.about {
+		animation: move-out #{$page-transition-time/2} ease-in
+			#{$fly-out-animation-delay*1} 1 forwards;
+	}
+
+	.nav {
+		animation: move-out #{$page-transition-time/2} ease-in
+			#{$fly-out-animation-delay*2} 1 forwards;
+	}
+}
+
+.center-card.return {
+	.title-text {
+		@include transform(translateX(100%));
+		opacity: 0;
+		animation: move-in #{$page-transition-time/2} ease-out
+			#{$fly-out-animation-delay*0} 1 forwards;
+	}
+
+	.about {
+		@include transform(translateX(100%));
+		opacity: 0;
+		animation: move-in #{$page-transition-time/2} ease-out
+			#{$fly-out-animation-delay*1} 1 forwards;
+	}
+
+	.nav {
+		@include transform(translateX(100%));
+		opacity: 0;
+		animation: move-in #{$page-transition-time/2} ease-out
+			#{$fly-out-animation-delay*2} 1 forwards;
+	}
+}

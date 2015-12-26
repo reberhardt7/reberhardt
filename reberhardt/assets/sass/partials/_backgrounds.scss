@@ -1,0 +1,96 @@
+.backgrounds, .backgrounds div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	z-index: -100;
+}
+
+.backgrounds {
+	// The .backgrounds pseudo elements (used to mask out the background when
+	// a page other than the home page is being displayed) are translated
+	// above and below .backgrounds on the home page. The .backgrounds::after
+	// element, in particular, causes the vertical scroll bar to appear. Just
+	// set overflow: hiddden to prevent these issues
+	overflow: hidden;
+
+	div:not(.gray-overlay) {
+		@include transform(translateY(0));
+	}
+
+	// When a page other than the home page is being displayed, the full-page
+	// background shrinks (or, rather, gets masked out) to be the page
+	// banner's background
+	&::before, &::after {
+		content: '';
+		background: #fff;
+		position: absolute;
+		left: 0;
+		right: 0;
+		@include transition(transform $page-transition-time ease-in-out);
+	}
+
+	&::before {
+		top: 0;
+		height: $nav-height;
+		@include transform(translateY(#{-$nav-height}));
+	}
+
+	&::after {
+		top: #{$nav-height + $banner-height};
+		bottom: 0;
+		@include transform(translateY(100%));
+	}
+
+	&.small::before, &.small::after {
+		@include transform(translateY(0));
+	}
+
+	// A div covering .backgrounds is filled with black and has 0.6 opacity
+	// when shown so that it darkens the backgrounds a bit and provides
+	// contrast to read the text on top of .backgrounds
+	.gray-overlay {
+		background: #000;
+		opacity: 0;
+		z-index: -10;
+		content: "";
+		@include transition(opacity, $background-transition-time, ease-in-out);
+	}
+	&.visible .gray-overlay {
+		opacity: 0.6;
+	}
+
+	// When .backgrounds is masked out, only the top parts of the background
+	// images are showing. Shift the background images up so that we can still
+	// see their centers (where most of the interesting parts are)
+	&.small div:not(.gray-overlay) {
+		@include transform(translateY(-25%));
+	}
+
+	div.visible:not(.gray-overlay) {
+		opacity: 1;
+	}
+
+	div {
+		@include background-size(cover !important);
+		opacity: 0;
+		@include transition(opacity $background-transition-time ease-in-out, transform $page-transition-time ease-in-out);
+	}
+
+	#software-background {
+		background: url(/assets/img/backgrounds/DSC_9869.jpg) center center no-repeat;
+	}
+	#photography-background {
+		background: url(/assets/img/backgrounds/DSC_5179.jpg) center center no-repeat;
+	}
+	#music-background {
+		background: url(/assets/img/backgrounds/DSC_9903.jpg) center center no-repeat;
+	}
+	#teaching-background {
+		background: url(/assets/img/backgrounds/DSC_0231.jpg) center center no-repeat;
+	}
+	#resume-background {
+		background: url(/assets/img/backgrounds/DSC_0229.jpg) center center no-repeat;
+	}
+}

@@ -49,7 +49,7 @@
 		padding-top: $timeline-entry-vertical-padding;
 		padding-bottom: $timeline-entry-vertical-padding;
 
-		h2 {
+		h3 {
 			padding-top: 0;
 			padding-bottom: 0.5em;
 		}
@@ -141,13 +141,13 @@
 			text-align: justify;
 			@include hyphens(auto);
 
-			h2 { text-align: center; }
+			h3 { text-align: center; }
 
 			p:not(:first-of-type) { padding-top: 0.5em; }
 
 			@include breakpoint($tablet) {
 				float: left;
-				h2 { text-align: left; }
+				h3 { text-align: left; }
 				// Width = full width - bubble - img - img padding
 				width: calc(100% - #{$date-bubble-width} - #{$img-width} - 3em);
 				padding: 0;

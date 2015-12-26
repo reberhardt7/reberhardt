@@ -6,59 +6,10 @@ html {
     box-sizing: inherit;
 }
 
-// Sticky footer
-
-* {
-    margin: 0;
+body {
+    width: 100%;
+    overflow-x:hidden;
 }
-
-html, body {
-    height: 100%;
-}
-
-.wrapper {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto #{-$footer-height};
-}
-
-.footer, .push {
-    height: $footer-height;
-}
-
-// .pane {
-//     position: relative;
-//     $vertical-padding: 3em;
-//     text-align: center;
-//     width: 100%;
-//     padding-top: $vertical-padding;
-//     padding-bottom: $vertical-padding;
-//     min-height: calc(100vh - 2 * #{$vertical-padding});
-
-//     > * {
-//         display: inline-block;
-//         width: calc(100% - 2em);
-//         margin-left: 1em;
-//         margin-right: 1em;
-
-//         @include breakpoint($screen) {
-//             width: 1000px;
-//             margin-left: 0;
-//             margin-right: 0;
-//         }
-//     }
-
-//     // The hash anchor provides a target for the browser to scroll to when a hash link is clicked
-//     // such that the browser scrolls to <height of navbar> above the actual element we want to go
-//     // to. This way, the sticky navbar doesn't cover anything up
-//     .hash-anchor {
-//         position: absolute;
-//         height: 0;
-//         width: 0;
-//         top: -1 * (1em + $navbar-vertical-padding*2);
-//     }
-// }
 
 @mixin vertical-center {
     position: relative;
@@ -68,4 +19,90 @@ html, body {
 
 .vertical-center {
     @include vertical-center;
+}
+
+#content {
+    // #content is a container for child .page divs. Whenever user clicks a
+    // page, the partial for the page will be loaded into a #content .page
+    // div. These divs are absolutely positioned so that we can stack them all
+    // on top of each other, and then when transitioning between pages, cross-
+    // fade between the divs. #content also contains the loading spinner,
+    // which is also absolutely positioned.
+
+    position: relative;
+    // With no page loaded (other than the home page), #content's height is 0.
+    // When a page is loaded, this height will be modified in JS to be the
+    // height of the child .page, since the child divs are absolutely
+    // positioned and take no space in the flow
+    height: 0;
+    @include transition(height 0.5s ease-in-out);
+
+    .loading-spinner {
+        position: absolute;
+        top: 1em;
+        left: calc( 50% - #{$loading-spinner-size / 2} );
+        opacity: 0;
+        @include transition(opacity $fade-transition-time ease-in-out);
+    }
+    .loading-spinner.show {
+        opacity: 1;
+        // Pause ($page-transition-time - $fade-transition-time) before fading
+        // in, in case the page loads within the fadeout duration (in which
+        // case we don't need to show loading spinner)
+        @include transition(opacity $fade-transition-time ease-in-out #{$page-transition-time - $fade-transition-time});
+    }
+
+    .page {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        @include transition(visibility $fade-transition-time, opacity $fade-transition-time ease-in-out 0s);
+    }
+
+    .page.show {
+        opacity: 1;
+        visibility: visible;
+        // Wait $fade-transition-time/2 to start fading in, so that the other page has a chance
+        // to fade out
+        @include transition(visibility 0s, opacity $fade-transition-time ease-in-out #{$fade-transition-time/2});
+    }
+}
+
+// When transitioning from the home page to some other page, we want #content
+// to fade in and drift up
+#content.firstload {
+    opacity: 0;
+    @include animation(fade-in-up-lg #{$page-transition-time/2} ease-out #{$page-transition-time/2} 1 forwards);
+
+    .page.show {
+        opacity: 1;
+        visibility: visible;
+        // The #content.firstload animation will take care of introducing the
+        // page. Don't bother with fading the page in; that will just burn
+        // extra CPU
+        @include transition(none);
+    }
+}
+
+// Fade in and drift up
+@keyframes fade-in-up-lg {
+    0% {
+        @include transform(translateY(8em));
+        opacity: 0;
+    }
+    100% {
+        @include transform(translateY(0em));
+        opacity: 1;
+    }
+}
+
+.section {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    position: relative;
 }

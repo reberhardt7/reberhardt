@@ -1,0 +1,37 @@
+.footer {
+	text-align: center;
+	font-size: 1.25em;
+	width: 100%;
+	color: #555;
+	@include transition(color #{$background-transition-time/2} ease-in-out);
+
+	a, a:visited {
+		color: inherit;
+		margin-right: 0.25em;
+	}
+}
+
+.footer.dark {
+	color: #ccc;
+}
+
+// Sticky footer
+
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto #{-$footer-height};
+}
+
+.footer, .push {
+    height: $footer-height;
+}

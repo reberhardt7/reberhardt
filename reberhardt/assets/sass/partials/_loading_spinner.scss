@@ -1,0 +1,42 @@
+@keyframes loading-spinner {
+    0%,
+    80%,
+    100% {
+    box-shadow: 0 $loading-spinner-size 0 #{-$loading-spinner-size/2} #aaa;
+    }
+    40% {
+    box-shadow: 0 $loading-spinner-size 0 0 #aaa;
+    }
+}
+
+.loading-spinner:before, .loading-spinner:after, .loading-spinner {
+    border-radius: 50%;
+    width: $loading-spinner-size;
+    height: $loading-spinner-size;
+    @include animation-fill-mode(both);
+    @include animation(loading-spinner $loading-spinner-duration infinite ease-in-out);
+}
+
+.loading-spinner {
+    margin: 0 auto;
+    position: relative;
+    bottom: $loading-spinner-size;
+    text-indent: -9999em;
+    @include transform(translateZ(0));
+    @include animation-delay(-0.16s);
+}
+
+.loading-spinner:before {
+    left: #{-$loading-spinner-size - 1em};
+    @include animation-delay(-0.32s);
+}
+
+.loading-spinner:after {
+    left: #{$loading-spinner-size + 1em};
+}
+
+.loading-spinner:before, .loading-spinner:after {
+    content: '';
+    position: absolute;
+    top: 0;
+}

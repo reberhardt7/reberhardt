@@ -1,51 +1,29 @@
 body {
     font-family: $base-font-family, sans-serif;
     font-weight: $base-font-weight;
-    // line-height: 1.6;
-    // font-size: 0.95em;
+    color: $base-font-color;
 }
 
 h1, h2, h3 {
-    padding-top: 0.67em;
-    padding-bottom: 0.33em;
+    padding-top: $header-margin-bottom;
+    padding-bottom: $header-margin-top;
     font-family: $header-font-family;
     font-weight: $header-font-weight;
-
-    em {
-        font-weight: $header-em-font-weight;
-        font-style: normal;
-    }
 }
 
-// h1 {
-//     font-family: $header-font-family;
-//     font-size: 3em;
-//     @include breakpoint($tablet) { font-size: 4em; }
-//     margin-bottom: 0.5em;
-//     line-height: 1.2;
-// }
+h1 em {
+    font-weight: $bold;
+    font-style: normal;
+}
 
-// h2 {
-//     font-family: $base-font-family;
-//     font-size: 2em;
-//     margin-bottom: 0.25em;
-// }
+h2 em, h3 em {
+    font-weight: $regular;
+    font-style: normal;
+}
 
-// h3 {
-//     font-family: $base-font-family;
-//     font-size: 1.6em;
-//     margin-bottom: 0.25em;
-// }
-
-// .subheading {
-//     margin: 10px;
-//     font-size: 2em;
-//     font-weight: $light;
-// }
-
-// p {
-//     margin-top: 0;
-// }
+h1 { font-size: 3.5em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.5em; }
 
 a, a:visited {
     color: $link-color;

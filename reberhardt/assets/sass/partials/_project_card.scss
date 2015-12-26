@@ -1,0 +1,74 @@
+.project-card {
+	$card-padding: 1em;
+	// How should space be split between the logo (left) and the text (right)?
+	$card-image-size: 30%;
+
+	width: 49%;
+	padding: $card-padding;
+	display: inline-block;
+	position: relative;
+	@include clearfix();
+
+	.logo {
+		display: block;
+		width: $card-image-size;
+		float: left;
+
+		img { width: 100%; }
+	}
+
+	.info {
+		width: #{100% - $card-image-size};
+		float: right;
+		padding-left: $card-padding;
+
+		h3 { padding: 0; }
+	}
+
+	// This is a little bar at the bottom of each project card with info on
+	// technologies used and dates the project was being worked on
+	.at-a-glance {
+		border-top: 1px dashed #ddd;
+		border-bottom: 1px dashed #ddd;
+		position: absolute;
+		bottom: #{$card-padding + 0.1em};
+		left: calc( #{$card-image-size} + #{$card-padding + 0.4em} );
+		right: $card-padding;
+		padding-top: 0.25em;
+		padding-bottom: 0.1em;
+	}
+
+	.dates {
+		display: inline-block;
+		float: right;
+		font-size: 80%;
+		position: relative;
+		top: 0.2em;
+	}
+
+	.technologies {
+		list-style-type: none;
+		padding: 0;
+		float: left;
+
+		li {
+			display: inline-block;
+			height: 1.5em;
+			margin-right: 0.25em;
+			background: #eaeaea;
+			@include border-radius(2px);
+			font-size: 80%;
+		}
+
+		li img {
+			height: 100%;
+		}
+
+		li span {
+			position: relative;
+			top: -0.2em;
+			margin-left: 0.25em;
+			margin-right: 0.25em;
+		}
+	}
+}

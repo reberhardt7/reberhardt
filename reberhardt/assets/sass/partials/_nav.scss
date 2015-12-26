@@ -1,0 +1,150 @@
+.nav {
+	text-align: center;
+	font-weight: 300;
+	color: #555;
+	font-size: 105%;
+	line-height: 200%;
+	position: relative;
+
+	a, a:visited {
+		position: relative;
+		text-decoration: none;
+		display: inline-block;
+		margin-left: 0.5em;
+		line-height: 100%;
+		color: inherit;
+		padding: 5px 8px;
+		@include transition($nav-hover-animation-time ease-in-out);
+	}
+}
+
+.nav.top {
+	padding-top: 1em;
+	height: $nav-height;
+
+	a { background-color: transparent; }
+
+	// Animated underline (appears on mouseover)
+	a::before {
+		opacity: 0;
+		position: absolute;
+		left: 50%;
+		right: 50%;
+		bottom: 0;
+		top: 100%;
+		@include transition($navbar-underline-transition-speed ease-in-out);
+		content: " ";
+		border-bottom: 1px solid #333;
+		border-left: 1px solid #333;
+		border-right: 1px solid #333;
+	}
+	a:hover {
+		color: #333;
+		background-color: transparent;
+		&:not(.selected)::before {
+			opacity: 1;
+			left: 0;
+			right: 0;
+		}
+	}
+
+	a.selected:hover::before {
+		border-color: $blue;
+	}
+
+	a.selected {
+		background-color: $blue;
+		color: #fff;
+	}
+
+	a::after {
+		content: "";
+		width: 0;
+		height: 0;
+		border-left: 8px solid transparent;
+		border-right: 8px solid transparent;
+		border-top: 0px solid transparent;
+		@include transition(border-top $nav-hover-animation-time ease-in-out);
+		top: 100%;
+		left: calc( 50% - 8px );
+		position: absolute;
+	}
+	a.selected::after {
+		border-top: 8px solid $blue;
+	}
+
+	a.selected:hover {
+		background-color: $blue;
+	}
+
+	a.selected:not(:active):hover {
+		animation: wiggle $nav-hover-animation-time ease 0s 1 forwards;
+	}
+}
+
+.nav.top:not(.hidden) {
+	opacity: 0;
+	$delay: 0.25s;
+	animation: navbar-move-in #{$page-transition-time - $delay} ease-out $delay 1 forwards;
+}
+
+.nav.top.hidden {
+	top: -$nav-height;
+	opacity: 0;
+}
+
+.nav.in-body {
+	a, a:visited {
+		background-color: #333;
+		border: 1px solid transparent;
+		color: #eee;
+	}
+
+	a:hover {
+		color: #fff;
+		background-color: #333;
+	}
+}
+
+.dark .nav.in-body {
+	color: #ccc;
+	position: relative;
+
+	a, a:visited {
+		color: #ccc;
+		background-color: transparent;
+		border: 1px solid #ccc;
+	}
+
+	a:hover {
+		color: #333;
+		background-color: #eee;
+		border: 1px solid #ccc;
+	}
+}
+
+@keyframes navbar-move-in {
+	0% {
+		top: -$nav-height;
+		opacity: 0;
+	}
+	100% {
+		top: 0;
+		opacity: 1;
+	}
+}
+
+@keyframes wiggle {
+	0% {
+		@include transform(rotate(0deg));
+	}
+	25% {
+		@include transform(rotate(-2deg));
+	}
+	75% {
+		@include transform(rotate(2deg));
+	}
+	100% {
+		@include transform(rotate(0deg));
+	}
+}

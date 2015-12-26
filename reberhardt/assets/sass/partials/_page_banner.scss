@@ -1,0 +1,93 @@
+// Fade in and drift up on a small scale. Used to animate in the banner text
+@keyframes fade-in-up-sm {
+	0% {
+		@include transform(translateY(4em));
+		opacity: 0;
+	}
+	100% {
+		@include transform(translateY(0em));
+		opacity: 1;
+	}
+}
+
+.banner {
+	position: relative;
+	height: $banner-height;
+	width: 100%;
+	color: #eee;
+	font-weight: 300;
+	text-align: justify;
+	@include hyphens(auto);
+
+	.content {
+		margin-left: auto;
+		margin-right: auto;
+		position: absolute;
+		bottom: 0;
+		left: calc( 50% - 500px );
+		right: calc( 50% - 500px );
+		padding: 1em;
+
+		// Title text transitions between pages by flipping in 3d space
+		h1 {
+			display: block;
+			padding-top: 0;
+			padding-bottom: 10px;
+		}
+		h1 em {
+			display: inline-block;
+			margin-right: 10px;
+			// Hide action/blurb text that doesn't apply
+			display: none;
+			// Flipping animation:
+			@include transform(rotateX(0deg));
+			@include transition(transform 0.15s linear);
+		}
+		h1 em.exiting {
+			@include transform(rotateX(90deg));
+		}
+		h1 em.entering {
+			@include transform(rotateX(-90deg));
+		}
+
+		// Banner text transitions by simple crossfade
+		p {
+			opacity: 0;
+			visibility: hidden;
+			@include transition(visibility 0s $fade-transition-time, opacity $fade-transition-time ease-in-out);
+		}
+		p.show {
+			opacity: 1;
+			visibility: visible;
+			@include transition(visibility 0s, opacity $fade-transition-time ease-in-out);
+		}
+
+		a { color: $link-color-dark-bg; }
+		a:hover { color: lighten($link-color-dark-bg, 15); }
+
+		.blurbs {
+			position: relative;
+			width: 100%;
+			height: 4em;
+			padding-top: 0.4em;
+			overflow: visible;
+
+			p {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
+		}
+
+	}
+}
+
+.banner.hidden {
+	opacity: 0;
+}
+
+.banner:not(.hidden) {
+	opacity: 0;
+	@include animation(fade-in-up-sm #{$page-transition-time/2} ease-out #{$page-transition-time/2} 1 forwards);
+}
