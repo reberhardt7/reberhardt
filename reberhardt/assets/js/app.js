@@ -130,7 +130,17 @@ function loadPage(nextPage) {
                 $('#content .loading-spinner').removeClass('show');
                 // If we're coming in from the home page, add the firstload
                 // class so that the new content "drifts" up when displayed
-                if(oldPage == 'home') $('#content').addClass('firstload');
+                if(oldPage == 'home' && !onMobile) {
+                    $('#content').addClass('firstload');
+                    // We need to clear the firstload class after the page
+                    // transition is complete. Otherwise, if we go back to the
+                    // home page and then click a different page, the
+                    // firstload class won't be newly introduced (since it was
+                    // already there) and the new content won't drift up.
+                    setTimeout(function() {
+                        $('#content').removeClass('firstload');
+                    }, 1000);
+                }
                 // Show the new content
                 if(oldPage == 'home' || onMobile) {
                     newPageDiv.addClass('show');
@@ -163,7 +173,17 @@ function loadPage(nextPage) {
         else {
             // If we're coming in from the home page, add the firstload class
             // so that the new content "drifts" up and in when displayed
-            if(oldPage == 'home') $('#content').addClass('firstload');
+            if(oldPage == 'home' && !onMobile) {
+                $('#content').addClass('firstload');
+                // We need to clear the firstload class after the page
+                // transition is complete. Otherwise, if we go back to the
+                // home page and then click a different page, the firstload
+                // class won't be newly introduced (since it was already
+                // there) and the new content won't drift up.
+                setTimeout(function() {
+                    $('#content').removeClass('firstload');
+                }, 1000);
+            }
             // Show the "new" content
             $('#'+nextPage+'-page').show();
             if(!onMobile) {
@@ -179,20 +199,6 @@ function loadPage(nextPage) {
             // visible .page's height in order to avoid this
             $('#content').css('height', $('#'+nextPage+'-page').height() + 'px');
         }
-    }
-
-    // We need to clear the firstload class if we set it after the page
-    // transition is complete. The firstload class should be set at the time
-    // of transition from the home page to some other page, so that the new
-    // content fades in and "drifts up". If it is not subsequently removed,
-    // then if we go back to the home page and then click a different page,
-    // the firstload class won't be newly introduced (since it was already
-    // there) and the new content won't drift up.
-    if(oldPage == 'home') {
-        if(!onMobile) setTimeout(function() {
-            $('#content').removeClass('firstload');
-        }, 1000);
-        else $('#content').removeClass('firstload');
     }
 }
 
