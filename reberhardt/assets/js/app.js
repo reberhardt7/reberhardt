@@ -127,44 +127,37 @@ function loadPage(nextPage) {
             $('#content').append(newPageDiv);
             $('#content .loading-spinner').addClass('show');
             newPageDiv.load('/partials/'+nextPage+'.html', function() {
-                $('#content .loading-spinner').removeClass('show');
-                // If we're coming in from the home page, add the firstload
-                // class so that the new content "drifts" up when displayed
-                if(oldPage == 'home' && !onMobile) {
-                    $('#content').addClass('firstload');
-                    // We need to clear the firstload class after the page
-                    // transition is complete. Otherwise, if we go back to the
-                    // home page and then click a different page, the
-                    // firstload class won't be newly introduced (since it was
-                    // already there) and the new content won't drift up.
-                    setTimeout(function() {
-                        $('#content').removeClass('firstload');
-                    }, 1000);
-                }
-                // Show the new content
-                if(oldPage == 'home' || onMobile) {
-                    newPageDiv.addClass('show');
-                }
-                else if(!onMobile) { // we want fade in transition
-                    // There seems to be a bug where when the new div is created
-                    // and the show class is immediately added, the browser jumps
-                    // straight to making it visible and skips the fade in. So
-                    // wait 10ms for the browser to chill out and process the new
-                    // DOM before fading it in. (this is bad but oh well)
-                    setTimeout(function() {
+                // We want to wait until the div has fully loaded (including
+                // any child images or iframes)
+                var childElems = newPageDiv.find('img, iframe');
+                var childElemsCount = childElems.length;
+                var childElemsLoaded = 0;
+                childElems.on('load', function() {
+                    childElemsLoaded++;
+
+                    if(childElemsCount == childElemsLoaded) {
+                        $('#content .loading-spinner').removeClass('show');
+                        // Since the .page divs are absolutely positioned, they
+                        // take no space in #content, so #content has a height of
+                        // zero and the sticky footer ends up consequently
+                        // floating in the middle of the page. Set #content to the
+                        // visible .page's height in order to avoid this
+                        $('#content').css('height', newPageDiv.height() + 'px');
+                        // If we're coming in from the home page, add the firstload
+                        // class so that the new content "drifts" up when displayed
+                        if(oldPage == 'home' && !onMobile) {
+                            $('#content').addClass('firstload');
+                            // We need to clear the firstload class after the page
+                            // transition is complete. Otherwise, if we go back to the
+                            // home page and then click a different page, the
+                            // firstload class won't be newly introduced (since it was
+                            // already there) and the new content won't drift up.
+                            setTimeout(function() {
+                                $('#content').removeClass('firstload');
+                            }, 1000);
+                        }
                         newPageDiv.addClass('show');
-                    }, 10);
-                }
-                // Since the .page divs are absolutely positioned, they
-                // take no space in #content, so #content has a height of
-                // zero and the sticky footer ends up consequently
-                // floating in the middle of the page. Set #content to the
-                // visible .page's height in order to avoid this
-                $('#content').css('height', newPageDiv.height() + 'px');
-                // When things inside the .page load, they might change the
-                // div's height, so we'd need to change #content height again
-                newPageDiv.find('img, iframe').on('load', function() {
-                    $('#content').css('height', newPageDiv.height() + 'px');
+                    }
                 });
             });
         }
