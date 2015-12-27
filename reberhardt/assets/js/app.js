@@ -136,29 +136,33 @@ function loadPage(nextPage) {
                     childElemsLoaded++;
 
                     if(childElemsCount == childElemsLoaded) {
-                        $('#content .loading-spinner').removeClass('show');
-                        // Since the .page divs are absolutely positioned, they
-                        // take no space in #content, so #content has a height of
-                        // zero and the sticky footer ends up consequently
-                        // floating in the middle of the page. Set #content to the
-                        // visible .page's height in order to avoid this
-                        $('#content').css('height', newPageDiv.height() + 'px');
-                        // If we're coming in from the home page, add the firstload
-                        // class so that the new content "drifts" up when displayed
-                        if(oldPage == 'home' && !onMobile) {
-                            $('#content').addClass('firstload');
-                            // We need to clear the firstload class after the page
-                            // transition is complete. Otherwise, if we go back to the
-                            // home page and then click a different page, the
-                            // firstload class won't be newly introduced (since it was
-                            // already there) and the new content won't drift up.
-                            setTimeout(function() {
-                                $('#content').removeClass('firstload');
-                            }, 1000);
-                        }
-                        newPageDiv.addClass('show');
+                        finishLoad();
                     }
                 });
+                function finishLoad() {
+                    $('#content .loading-spinner').removeClass('show');
+                    // Since the .page divs are absolutely positioned, they
+                    // take no space in #content, so #content has a height of
+                    // zero and the sticky footer ends up consequently
+                    // floating in the middle of the page. Set #content to the
+                    // visible .page's height in order to avoid this
+                    $('#content').css('height', newPageDiv.height() + 'px');
+                    // If we're coming in from the home page, add the firstload
+                    // class so that the new content "drifts" up when displayed
+                    if(oldPage == 'home' && !onMobile) {
+                        $('#content').addClass('firstload');
+                        // We need to clear the firstload class after the page
+                        // transition is complete. Otherwise, if we go back to the
+                        // home page and then click a different page, the
+                        // firstload class won't be newly introduced (since it was
+                        // already there) and the new content won't drift up.
+                        setTimeout(function() {
+                            $('#content').removeClass('firstload');
+                        }, 1000);
+                    }
+                    newPageDiv.addClass('show');
+                }
+                if(childElemsCount == 0) finishLoad();
             });
         }
         // Otherwise, if the .page div already exists, then the content has
