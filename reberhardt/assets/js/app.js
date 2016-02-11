@@ -233,7 +233,7 @@ $(window).resize(function() {
 })
 
 $('.nav-link').click(function() {
-    if(this.getAttribute('data-target') != 'resume') {
+    if(this.getAttribute('data-target') != 'resume' && this.getAttribute('data-target') != 'blog') {
         loadPage(this.getAttribute('data-target'));
 
         // Pushstate:

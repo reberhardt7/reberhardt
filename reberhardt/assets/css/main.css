@@ -628,9 +628,13 @@ body.on-content .backgrounds {
 }
 /* line 116, ../sass/partials/_backgrounds.scss */
 .backgrounds #teaching-background {
-  background: url(/assets/img/backgrounds/DSC_0231.jpg) center center no-repeat;
+  background: url(/assets/img/backgrounds/intersession.jpg) center center no-repeat;
 }
 /* line 119, ../sass/partials/_backgrounds.scss */
+.backgrounds #blog-background {
+  background: url(/assets/img/backgrounds/DSC_0231.jpg) center center no-repeat;
+}
+/* line 122, ../sass/partials/_backgrounds.scss */
 .backgrounds #resume-background {
   background: url(/assets/img/backgrounds/DSC_0229.jpg) center center no-repeat;
 }
