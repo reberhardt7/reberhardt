@@ -111,6 +111,11 @@
 		background-color: #333;
 		border: 1px solid transparent;
 		color: #eee;
+
+		@include breakpoint($mobile) {
+			display: block;
+			margin: 0 1em 0.5em 1em;
+		}
 	}
 
 	a:hover {
