@@ -136,6 +136,7 @@
 			margin-right: 2em;
 			padding-top: 0;
 			width: $img-width;
+			max-width: $img-width;
 
 			@include breakpoint($mobile) {
 				width: 80%;
