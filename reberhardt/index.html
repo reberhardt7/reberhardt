@@ -6,392 +6,78 @@
         <link rel="stylesheet" href="assets/css/main.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
-    <body>
-        <div class="wrapper">
-            <div class="nav top hidden">
-                <a class="nav-link" data-target="software" href="/software">Programming</a>
-                <a class="nav-link" data-target="photography" href="/photography">Photography</a>
-                <a class="nav-link" data-target="music" href="/music">Music</a>
-                <a class="nav-link" data-target="teaching" href="/teaching">Teaching</a>
-                <a class="nav-link" data-target="resume" href="/resume.pdf">Resume</a>
-            </div>
-            <div class="banner hidden">
-                <div class="content">
-                    <h1>
-                        I like
-                        <em id="fkalsjdf-action">fkalsjdf</em>
-                        <!-- ^ A strange bug causes the "flipping text"
-                        animation to stutter when transitioning to the first
-                        element. Hence this dummy element -->
-                        <em id="software-action">writing software.</em>
-                        <em id="photography-action">taking pictures.</em>
-                        <em id="music-action">making music.</em>
-                        <em id="teaching-action">teaching people.</em>
-                    </h1>
-                    <div class="blurbs">
-                        <p id="software-blurb">I have deep experience with full-stack web development. I also enjoy working with machine learning, cybersecurity, and high performance computing.</p>
-                        <p id="photography-blurb">My favorite genres include landscape and candid photography. Follow me <a href="https://www.flickr.com/photos/reberhardt/">on Flickr</a>.</p>
-                        <p id="music-blurb">I play violin, drums, piano, and guitar. I also like to write music.</p>
-                        <p id="teaching-blurb">I like sharing my knowledge with other people and helping them build/learn cool things.</p>
+    <body class="on-home">
+        <div class="content-container" style="display:none">
+            <div class="wrapper">
+                <div class="nav top hidden">
+                    <a class="nav-link" data-target="software" href="/software">Programming</a>
+                    <a class="nav-link" data-target="photography" href="/photography">Photography</a>
+                    <a class="nav-link" data-target="music" href="/music">Music</a>
+                    <a class="nav-link" data-target="teaching" href="/teaching">Teaching</a>
+                    <a class="nav-link" data-target="resume" href="/resume.pdf">Resume</a>
+                </div>
+                <div class="banner hidden">
+                    <div class="content">
+                        <h1>
+                            I like
+                            <em id="software-action">writing software.</em>
+                            <em id="photography-action">taking pictures.</em>
+                            <em id="music-action">making music.</em>
+                            <em id="teaching-action">teaching people.</em>
+                        </h1>
+                        <div class="blurbs">
+                            <p id="software-blurb">I have deep experience with full-stack web development. I also enjoy working with machine learning, cybersecurity, and high performance computing.</p>
+                            <p id="photography-blurb">My favorite genres include landscape and candid photography. Follow me <a href="https://www.flickr.com/photos/reberhardt/">on Flickr</a>.</p>
+                            <p id="music-blurb">I play violin, drums, piano, and guitar. I also like to write music.</p>
+                            <p id="teaching-blurb">I like sharing my knowledge with other people and helping them build/learn cool things.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="center-container">
-                <div class="center-card">
-                    <div class="title-text">
-                        <h1><em>Hi.</em> I'm Ryan Eberhardt.</h1>
-                    </div>
-                    <div class="about">
-                        I love programming, digital media, education, and any
-                        intersection of these areas.
-                    </div>
-                    <div class="nav in-body">
-                        <a class="nav-link" data-target="software" href="/software">Programming</a>
-                        <a class="nav-link" data-target="photography" href="/photography">Photography</a>
-                        <a class="nav-link" data-target="music" href="/music">Music</a>
-                        <a class="nav-link" data-target="teaching" href="/teaching">Teaching</a>
-                        <a class="nav-link" data-target="resume" href="/resume.pdf">Resume</a>
-                        <!-- <a href="#">Software developer</a>,
-                        <a href="#">photographer</a>,
-                        <a href="#">musician</a>,
-                        <a href="#">teacher</a>. -->
+                <div id="content">
+                    <div class="loading-spinner"></div>
+                </div>
+                <div class="push"></div>
+            </div><!-- .wrapper -->
+        </div><!-- .content-container -->
+        <div class="home-page-container">
+            <div class="wrapper">
+                <div class="center-container">
+                    <div class="center-card">
+                        <div class="title-text">
+                            <h1><em>Hi.</em> I'm Ryan Eberhardt.</h1>
+                        </div>
+                        <div class="about">
+                            I love programming, digital media, education, and any
+                            intersection of these areas.
+                        </div>
+                        <div class="nav in-body">
+                            <a class="nav-link" data-target="software" href="/software">Programming</a>
+                            <a class="nav-link" data-target="photography" href="/photography">Photography</a>
+                            <a class="nav-link" data-target="music" href="/music">Music</a>
+                            <a class="nav-link" data-target="teaching" href="/teaching">Teaching</a>
+                            <a class="nav-link" data-target="resume" href="/resume.pdf">Resume</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div id="content">
-                <div class="loading-spinner"></div>
-            </div>
-            <div class="backgrounds">
-                <div class="gray-overlay"></div>
-                <div id="software-background"></div>
-                <div id="photography-background"></div>
-                <div id="music-background"></div>
-                <div id="teaching-background"></div>
-                <div id="resume-background"></div>
-            </div>
-            <div class="push"></div>
-        </div>
-        <div class="footer">
-            <a href="#" onMouseOver="this.href = atob('bWFpbHRvOnJ5YW5AcmViZXJoYXJkdC5jb20=') //reduce spam" onClick="this.href = atob('bWFpbHRvOnJ5YW5AcmViZXJoYXJkdC5jb20=') //reduce spam"><i class="fa fa-envelope"></i></a>
-            <a href="https://github.com/reberhardt7"><i class="fa fa-github-square"></i></a>
-            <a href="https://www.linkedin.com/profile/view?292544196"><i class="fa fa-linkedin-square"></i></a>
-            <a href="https://plus.google.com/+RyanEberhardt"><i class="fa fa-google-plus-square"></i></a>
-            <a href="https://www.facebook.com/ryanaeberhardt"><i class="fa fa-facebook-square"></i></a>
-        </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="assets/js/app.js"></script>
-    </body>
-</html>
-
-<!-- <html>
-    <head>
-        <title>Ryan Eberhardt</title>
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <link href='//fonts.googleapis.com/css?family=Raleway:400,300,100' rel='stylesheet' type='text/css'>
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href="assets/css/vendor/Pe-icon-7-stroke.css" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </head>
-    <body>
-        <div class="navbar normal">
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#software">Projects</a></li>
-                <li><a href="#education">Education/Outreach</a></li>
-                <li><a href="#connect">Connect</a></li>
-                <li><a href="#">R&#233;sum&#233;</a></li>
-            </ul>
-        </div>
-        <div id="pane1" class="pane">
-            <div class="centerpiece">
-                <img src="assets/img/gear.png" />
-                <h1>Hello.</h1>
-                <p class="subheading">I'm Ryan Eberhardt.</p>
-            </div>
-            <i class="pe-7s-angle-down down-chevron"></i>
-            <div class="paper-tear"></div>
-        </div>
-        <div id="about-pane" class="pane">
-            <div class="hash-anchor" id="about"></div>
-            <div class="contents">
-                <img src="assets/img/portrait.jpg" />
-                <div>
-                    <h1>Hi, I'm Ryan Eberhardt.</h1>
-                    <p>
-                        I'm a student and software developer from the suburbs of Chicago.
-                        I started programming when I was nine years old and was captivated by the possibilities;
-                        I've been addicted to building things ever since.
-                    </p>
-                    <p>
-                        I primarily do full-stack web development, but I also enjoy working with mobile applications, machine learning algorithms, cryptography, and production infrastructure (systems administration and cybersecurity).
-                    </p>
-                    <p>
-                        In addition to just writing code, I love working with other people and teaching beginners to program.
-                        I have taught several programming classes, and continue to mentor students in the <a href="https://www.imsa.edu/">Illinois Math and Science Academy's</a> Advanced Computing Association.
-                    </p>
-                    <p>
-                        I also enjoy all types of digital media production, including <a href="#photography">photography</a>, cinematography, 3D animation, and music production.
-                        I founded <a href="http://www.imsastudentproductions.com">IMSA Student Productions</a> at the <a href="https://www.imsa.edu/">Illinois Math and Science Academy</a>.
-                        I love making music, and I play violin, viola, guitar, drums, and piano.
-                    </p>
-                    <p>
-                        I built this website from scratch in my free time with HTML, Sass, and a touch of JavaScript.
-                        If you're interested, check out the <a href="https://github.com/reberhardt7/reberhardt">source on GitHub</a>, or take a look at my <a href="#software">other projects</a>.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div id="software-pane" class="pane">
-            <div class="hash-anchor" id="software"></div>
-            <h1>Projects</h1>
-            <p>
-                I love building things.
-                I primarily do full-stack web development, but I also enjoy working with mobile applications, machine learning algorithms, cryptography, and production infrastructure (systems administration and cybersecurity).
-            </p>
-            <ul>
-                <div class="vertical-line"></div>
-                <li>
-                    <div class="bubble">Current</div>
-                    <a href="http://tuxedit.com"><img src="assets/img/logos/tux.png" /></a>
-                    <div class="info">
-                        <a href="http://tuxedit.com"><h2>Tux</h2></a>
-                        <p>
-                            Tux is an open-source collaborative markup language editor.
-                            I originally designed it to render what I'm calling "Markdown+Math" -- a markup language using GFM for formatting and LaTeX for math --
-                            but I've designed it with extensibility in mind so it can support other markup languages in the future.
-                            It supports live rendering, so you can type markup syntax in the left pane and see a live preview in the right.
-                            I'm currently working on adding Google-Docs-style collaboration features.
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">Current</div>
-                    <img src="assets/img/logos/accord.png" />
-                    <div class="info">
-                        <h2>Accord</h2>
-                        <p>
-                            Accord is a web application designed for <a href="http://harvest-community.org">Harvest Community Church</a>
-                            that assists people in selecting proper budget codes for various expenses and in submitting expense requisitions.
-                            It was designed to accommodate Harvest's unique budgeting system.
-                            The project uses the Python <a href="http://www.pylonsproject.org/">Pyramid</a>
-                            framework with a MySQL database on the backend and <a href="https://angularjs.org/">AngularJS</a>
-                            on the frontend.
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">Current</div>
-                    <a href="http://emp.xyz/"><img src="assets/img/logos/emp.png" /></a>
-                    <div class="info">
-                        <a href="http://emp.xyz/"><h2>Empassage/EMP</h2></a>
-                        <p>
-                            Empassage is a distributed, P2P messaging service implementing end-to-end elliptic-curve cryptography.
-                            Unlike email, conversations conducted over Empassage cannot be eavesdropped on or compromised by a third party, and the sender of a message cannot be spoofed.
-                            Empassage also includes delivery receipt support and a proof-of-work system that largely prevents spam.
-                            The application core is written in <a href="http://golang.org">Go</a>, and includes a web interface built with <a href="https://angularjs.org/">AngularJS</a>.
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">October 2014</div>
-                    <a href="http://illinois.navier.com"><img src="assets/img/logos/navier.png" /></a>
-                    <div class="info">
-                        <a href="http://illinois.navier.com"><h2>Illinois.com Landing Page</h2></a>
-                        <p>
-                            Under <a href="http://navier.com">Navier, Inc.</a>, I designed a landing page to garner anticipation for the launch of <a href="http://illinois.com">Illinois.com</a>.
-                            The site is a simple single-page project, with no backend component.
-                            It was more of an exercise in graphic design than programming, in a sense, but I enjoyed it nonetheless.
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">2013-2014</div>
-                    <a href="http://anvilapp.io"><img src="assets/img/logos/anvil.png" /></a>
-                    <div class="info">
-                        <a href="http://anvilapp.io"><h2>Anvil</h2></a>
-                        <p>
-                            Anvil is a tool enabling web developers to interact directly with customers in the concept and prototyping stages of feature development.
-                            (<a href="https://www.youtube.com/watch?v=eJ6gOkFeRkg">Watch the pitch.</a>)
-                            Developers can select any git branch with semi-functional code, and it will be deployed at a separate subdomain in a clone of the production environment;
-                            users can then view this prototype, before it's ready for production, and work directly with developers (or customer service) to provide feedback.
-                            This beats the alternative of making a release, gathering feedback, realizing customers don't understand how a feature is supposed to work,
-                            making another release, collecting feedback again, and so on (a long, iterative cycle).
-                            Anvil comprises several discrete components running on different servers, all communicating over REST APIs.
-                            The backend components are mostly written in Python and use MySQL, Docker, and Xen.
-                            The frontend is built using <a href="https://angularjs.org/">AngularJS</a>.
-                            Unfortunately, Anvil was not earning enough revenue, and is no longer actively developed or running in production.
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">2013-2014</div>
-                    <a href="https://imsastudentproductions.com/"><img src="assets/img/logos/isp.png" /></a>
-                    <div class="info">
-                        <a href="https://imsastudentproductions.com/"><h2>IMSA Student Productions</h2></a>
-                        <p>
-                            I founded IMSA Student Productions (ISP) at my high school, the Illinois Mathematics and Science Academy, as a student-led, professionally-advised extracurricular for those interested in media production.
-                            (<a href="https://imsastudentproductions.com/about">Read more here.</a>)
-                            After building a team, I built this website to manage team operations and publish the media we produced.
-                            Students and staff submit requests for ISP coverage, and ISP members can volunteer for the events they would like to cover.
-                            After covering events, members upload their media and post a reflection on their experience; IMSA staff then approve or reject the media for publication.
-                            The site also integrates with the school's LDAP directory for easy student authentication and has an SMTP component for sending notifications.
-                            The backend is built using the Python <a href="http://www.pylonsproject.org/">Pyramid</a> framework and a MySQL database;
-                            the frontend is built using the <a href="http://foundation.zurb.com/">Foundation CSS framework</a>.
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">Early 2014</div>
-                    <img src="assets/img/logos/navier.png" />
-                    <div class="info">
-                        <h2>Bitcoin Payment Systems</h2>
-                        <p>
-                            Under <a href="http://navier.com">Navier, Inc.</a>, I built and launched Bitcoin payment systems for the
-                            <a href="https://btc.suntimes.com/">Chicago Sun-Times</a> and <a href="https://bitcoin.polisforcongress.com/">Congressman Jared Polis</a>.
-                            Bitcoin is a peer-to-peer cryptographically-secure currency system, allowing users to easily send money over the Internet;
-                            these systems allow the Sun-Times and Jared Polis to easily accept Bitcoin for payments and donations, respectively.
-                            The backends are built with <a href="http://www.pylonsproject.org/">Pyramid</a> and MySQL, and use <a href="https://www.coinbase.com/">Coinbase's</a> Merchant API.
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">June 2013</div>
-                    <a href="http://www.foundationscamps.org/"><img src="assets/img/logos/foundations.png" /></a>
-                    <div class="info">
-                        <a href="http://www.foundationscamps.org/"><h2>Foundations Summer Camps</h2></a>
-                        <p>
-                            A friend and I launched a summer program that provides free STEM education for local junior high and high school students.
-                            I built a website that showcases our program, displays available classes, and allows students to enroll, enforcing maximum capacity limits.
-                            The backend is running on a LEMP stack (Linux, nginx, MySQL, and PHP).
-                        </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="bubble">2012</div>
-                    <img src="assets/img/logos/usci.png" />
-                    <div class="info">
-                        <h2>USCI</h2>
-                        <p>
-                            The Unifying and Simplifying Client Interface (USCI; rhymes with "husky") brought together various IT services at the
-                            <a href="https://www.imsa.edu/">Illinois Math and Science Academy</a> such as online grades, class CMS (Moodle), and campus printer management
-                            (several of which had difficult-to-use interfaces, if any GUI at all) in a single user-friendly application.
-                            The application was written in Java with Swing.
-                            Unfortunately, due to time constraints, the project did not mature past a beta release.
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div id="education-pane" class="pane">
-            <div class="hash-anchor" id="education"></div>
-            <h1>Education and Outreach</h1>
-            <p>
-                I love learning and helping others learn.
-                I always smile when I see the "light bulb" go off in others' heads and find a strong sense of gratification when I help someone to discover or understand something new.
-                I teach organized classes when time allows and mentor students at the Illinois Math and Science Academy and Harper College on their own projects.
-            </p>
-            <div class="well">
-                <img src="assets/img/logos/aca.png" />
-                <div class="info">
-                    <h2>IMSA Advanced Computing Association</h2>
-                    <p>
-                        The Advanced Computing Association (ACA) is an extracurricular at the <a href="https://www.imsa.edu">Illinois Math and Science Academy</a>
-                        that provides education in advanced areas of technology and supplies students with equipment and infrastructure to pursue independent ventures.
-                        Regular workshops cover topics including programming languages, networking, and server administration, and "hack nights" provide students
-                        with the opportunity to work on developing their own projects with experienced members available to assist.
-                        A 5-server production rack hosts student projects and supporting services;
-                        a 3-server development rack hosts experimental services and allows students to experience a complete rebuild and reconfiguration (from scratch) of a "production" network.
-                    </p>
-                    <p>
-                        I served as ACA's president from 2012-2014, building most of its production infrastructure from scratch and spearheading student workshops, and I continue to teach and mentor.
-                        I love engaging with current students and seeing their ideas come to life.
-                        While it's become harder to visit the IMSA campus, I help students with code reviews on ACA's <a href="https://about.gitlab.com/">Gitlab</a> instance,
-                        participate in brainstorming sessions and answer questions on ACA's <a href="http://www.discourse.org/">Discourse</a> forum,
-                        and occasionally stop by for a hack night or workshop.
-                    </p>
-                </div>
-            </div>
-            <div class="well">
-                <a href="http://www.foundationscamps.org"><img src="assets/img/logos/foundations.png" /></a>
-                <div class="info">
-                    <a href="http://www.foundationscamps.org"><h2>Foundations Summer Camps</h2></a>
-                    <p>
-                        The <a href="https://www.imsa.edu">Illinois Math and Science Academy</a> provides students with a top-notch education, particularly in the areas of math and science, and I learned a great amount while there.
-                        One summer break, I asked a classmate who lives in my area if he would be interested in teaching classes covering some of these advanced, interesting topics to local junior high and high school students,
-                        sharing the opportunity to learn material that students might otherwise never be exposed to.
-                        He agreed, and thus was born Foundations.
-                    </p>
-                    <p>
-                        Foundations offers free summer classes for local students covering various STEM (science, technology, engineering, and math) topics,
-                        including cellular biology, immunology, advanced chemistry, calculus, and Java programming.
-                        We sought to select course material that is often not covered in standard high school curriculums, yet is accessible to motivated junior high and high school students.
-                        We also attempted to not merely teach material, but to also ignite a sense of awe and curiosity in students, such that they might pursue more advanced material independently.
-                    </p>
-                    <p>
-                        Courses began with my brothers' friends, but expanded through word of mouth, and soon classes filled with new faces.
-                        Watching seventh-grade students come to understand how exactly a human body works when it "gets the flu" and how water enables life-giving chemical reactions was a wonderful experience,
-                        and one that I hope to have again in the near future.
-                    </p>
-                </div>
-            </div>
-            <div class="well">
-                <img src="assets/img/logos/imsa.png" />
-                <div class="info">
-                    <h2>Intersession Courses at the Illinois Math and Science Academy</h2>
-                    <p>
-                        Each year, the Illinois Math and Science Academy (IMSA) offers week-long <a href="https://www.imsa.edu/academics/Intersession%202015">intersession classes</a> between the first and second semesters.
-                        These courses enable students to get a taste of new subject areas without taking full-length classes or learn about niche topics that no courses are offered in.
-                    </p>
-                    <h3>Behind the Music Video (2014)</h3>
-                    <p>
-                        From the course description:
-                        <span class="quote">
-                            Music is one of the most powerful creative means of expression, and holds the power to cheer, inspire,
-                            and unite masses of people. Music videos extend this capacity, adding another dimension of creativity.
-                            This intersession course covers recording and mastering techniques, storyboarding, editing and
-                            production, camera fundamentals, live direction, and more. By the end of the course, students will record
-                            and produce their own music video to showcase to friends and family.
-                        </span>
-                        In the course, a friend and I taught the fundamentals of music video production;
-                        students then independently conceived and produced videos in groups.
-                        Check out <a href="https://imsastudentproductions.com/projects/intersession-2014-behind-the-music-video">what they came up with</a>!
-                    </p>
-                    <h3>Android Programming with Java (2013)</h3>
-                    <p>
-                        From the course description:
-                        <span class="quote">
-                            This intersession will introduce students to creating Android applications with Java. Students will use
-                            Eclipse to develop basic applications utilizing buttons, scroll lists, dialog boxes, and event handlers.
-                            Advanced students will have the opportunity to develop more complex applications, such as a media
-                            player, custom web browser, or simple game.
-                        </span>
-                        This course was especially challenging for me to teach, as I was the only instructor and had no prior formal teaching experience.
-                        In addition, the skill levels of the students varied wildly, with some having years of programming experience and others hardly knowing what Java is.
-                        Despite that, I learned as I taught, and at the end of the class,
-                        the students successfully built an app that sets off an alarm if you haven't touched the phone in the last 20 minutes,
-                        preventing you from falling asleep while studying on the late nights :)
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!--- I'll figure this out later :-/
-        <div id="photography-pane" class="pane">
-            <div class="hash-anchor" id="photography"></div>
-            <h1>Photography</h1>
-        </div>
-        <div id="connect" class="pane">
-            <h1>Connect</h1>
-            <p>Bored? Say hello! I would love to get in touch.</p>
-            <div>
-                <a href="#" onMouseOver="this.href = atob('bWFpbHRvOnJ5YW5AcmViZXJoYXJkdC5jb20=') //reduce spam"><i class="fa fa-envelope"></i></a>
+                <div class="push"></div>
+            </div><!-- .wrapper -->
+            <div class="footer">
+                <a href="#" onMouseOver="this.href = atob('bWFpbHRvOnJ5YW5AcmViZXJoYXJkdC5jb20=') //reduce spam" onClick="this.href = atob('bWFpbHRvOnJ5YW5AcmViZXJoYXJkdC5jb20=') //reduce spam"><i class="fa fa-envelope"></i></a>
                 <a href="https://github.com/reberhardt7"><i class="fa fa-github-square"></i></a>
                 <a href="https://www.linkedin.com/profile/view?292544196"><i class="fa fa-linkedin-square"></i></a>
                 <a href="https://plus.google.com/+RyanEberhardt"><i class="fa fa-google-plus-square"></i></a>
                 <a href="https://www.facebook.com/ryanaeberhardt"><i class="fa fa-facebook-square"></i></a>
             </div>
+        </div><!-- .home-page-container -->
+        <div class="backgrounds">
+            <div class="gray-overlay"></div>
+            <div id="software-background"></div>
+            <div id="photography-background"></div>
+            <div id="music-background"></div>
+            <div id="teaching-background"></div>
+            <div id="resume-background"></div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="assets/js/app.js"></script>
     </body>
 </html>
- -->

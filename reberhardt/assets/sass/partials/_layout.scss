@@ -21,27 +21,35 @@ body {
     @include vertical-center;
 }
 
+.home-page-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.content-container {
+    height: 100%;
+    width: 100%;
+}
+
 #content {
     // #content is a container for child .page divs. Whenever user clicks a
     // page, the partial for the page will be loaded into a #content .page
-    // div. These divs are absolutely positioned so that we can stack them all
-    // on top of each other, and then when transitioning between pages, cross-
-    // fade between the divs. #content also contains the loading spinner,
-    // which is also absolutely positioned.
+    // div. #content also contains the loading spinner, which is absolutely
+    // positioned.
 
     position: relative;
-    // With no page loaded (other than the home page), #content's height is 0.
-    // When a page is loaded, this height will be modified in JS to be the
-    // height of the child .page, since the child divs are absolutely
-    // positioned and take no space in the flow
-    height: 0;
-    @include breakpoint($tablet) {
-        @include transition(height 0.5s ease-in-out);
-    }
 
     .loading-spinner {
         position: absolute;
         top: 1em;
+        @media screen and ( min-height: #{$nav-height + $banner-height + 3em} ) {
+            // Position in the middle of the white space where content occupies
+            top: calc( 50vh - #{($nav-height + $banner-height)/2} - 1.5em );
+        }
         left: calc( 50% - #{$loading-spinner-size / 2} );
         opacity: 0;
         @include transition(opacity $fade-transition-time ease-in-out);
@@ -59,11 +67,6 @@ body {
 
     .page {
         opacity: 0;
-        visibility: hidden;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
         @include breakpoint($tablet) {
             @include transition(visibility $fade-transition-time, opacity $fade-transition-time ease-in-out 0s);
         }
@@ -71,11 +74,8 @@ body {
 
     .page.show {
         opacity: 1;
-        visibility: visible;
         @include breakpoint($tablet) {
-            // Wait $fade-transition-time/2 to start fading in, so that the other page has a chance
-            // to fade out
-            @include transition(visibility 0s, opacity $fade-transition-time ease-in-out #{$fade-transition-time/2});
+            @include transition(visibility 0s, opacity $fade-transition-time ease-in-out);
         }
     }
 }

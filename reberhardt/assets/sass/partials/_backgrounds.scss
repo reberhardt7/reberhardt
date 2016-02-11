@@ -7,8 +7,8 @@
 	z-index: -100;
 }
 
-.backgrounds {
-	// We need to make sure that #backgrounds covers the whole page banner,
+body.on-content .backgrounds {
+	// We need to make sure that .backgrounds covers the whole page banner,
 	// even if the page is shorter than the banner (so we'd need to scroll
 	// down to see the whole banner), so we set a min-height. The (1/0.75)
 	// factor compensates for the fact that background images inside
@@ -18,7 +18,9 @@
 	@include breakpoint($mobile-vert) {
 	min-height: #{(1/0.75)*(1.75*$nav-height + $banner-height)};
 	}
+}
 
+.backgrounds {
 	// The .backgrounds pseudo elements (used to mask out the background when
 	// a page other than the home page is being displayed) are translated
 	// above and below .backgrounds on the home page. The .backgrounds::after
