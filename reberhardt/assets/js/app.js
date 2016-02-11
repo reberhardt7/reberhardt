@@ -180,39 +180,24 @@ function loadPage(nextPage) {
             $('#content').append(newPageDiv);
             $('#content .loading-spinner').addClass('show');
             newPageDiv.load('/partials/'+nextPage+'.html', function() {
-                // We want to wait until the div has fully loaded (including
-                // any child images or iframes)
-                var childElems = newPageDiv.find('img, iframe');
-                var childElemsCount = childElems.length;
-                var childElemsLoaded = 0;
-                childElems.on('load', function() {
-                    childElemsLoaded++;
-
-                    if(childElemsCount == childElemsLoaded) {
-                        finishLoad();
+                $('#content .loading-spinner').removeClass('show');
+                // Wait until the previous page fades out (if we're on a
+                // fast connection and this page loaded before the other
+                // one finished fading out)
+                var loadTimeElapsed = Number(new Date() - startTime);
+                var fadeDelay = loadTimeElapsed >= PAGE_FADE_TRANSITION_TIME
+                    ? 1
+                    : PAGE_FADE_TRANSITION_TIME - loadTimeElapsed;
+                transitionTimers.push(setTimeout(function() {
+                    // If we're coming in from the home page, add the
+                    // firstload class so that the new content "drifts" up
+                    // when displayed
+                    if(oldPage == 'home' && !onMobile) {
+                        useFirstLoadAnimation();
                     }
-                });
-                function finishLoad() {
-                    $('#content .loading-spinner').removeClass('show');
-                    // Wait until the previous page fades out (if we're on a
-                    // fast connection and this page loaded before the other
-                    // one finished fading out)
-                    var loadTimeElapsed = Number(new Date() - startTime);
-                    var fadeDelay = loadTimeElapsed >= PAGE_FADE_TRANSITION_TIME
-                        ? 1
-                        : PAGE_FADE_TRANSITION_TIME - loadTimeElapsed;
-                    transitionTimers.push(setTimeout(function() {
-                        // If we're coming in from the home page, add the
-                        // firstload class so that the new content "drifts" up
-                        // when displayed
-                        if(oldPage == 'home' && !onMobile) {
-                            useFirstLoadAnimation();
-                        }
-                        // Make the new page fade in
-                        contentDivFadeIn(newPageDiv);
-                    }, fadeDelay));
-                }
-                if(childElemsCount == 0) finishLoad();
+                    // Make the new page fade in
+                    contentDivFadeIn(newPageDiv);
+                }, fadeDelay));
             });
         }
         // Otherwise, if the .page div already exists, then the content has
